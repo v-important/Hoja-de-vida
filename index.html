@@ -1,439 +1,434 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Julio César Méndez Montero - Aspirante en NEORIS</title>
-    <!-- Fuentes profesionales -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
-    <!-- Font Awesome para iconos (solo se usarán en cualidades personales) -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <style>
-        /* ESTILOS COMPLETOS */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Julio César Méndez Montero — Hoja de Vida</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-        body {
-            font-family: 'Inter', sans-serif;
-            background: #f0f2f5;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            padding: 2rem 1rem;
-            line-height: 1.5;
-            color: #1e293b;
-        }
+    :root {
+      --navy: #0d1b2a;
+      --navy-mid: #1b2d42;
+      --accent: #1a6baa;
+      --accent-light: #d6e8f7;
+      --text: #1e2d3d;
+      --muted: #5a6e82;
+      --border: #d1dce6;
+      --bg: #f5f8fb;
+      --white: #ffffff;
+    }
 
-        .resume {
-            max-width: 1100px;
-            width: 100%;
-            background: white;
-            border-radius: 24px;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-            overflow: hidden;
-            display: grid;
-            grid-template-columns: 300px 1fr;
-        }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      padding: 2.5rem 1rem;
+      line-height: 1.6;
+    }
 
-        /* BARRA LATERAL IZQUIERDA */
-        .sidebar {
-            background: #0f172a;
-            color: #e2e8f0;
-            padding: 2rem 1.5rem;
-        }
+    .page {
+      max-width: 900px;
+      margin: 0 auto;
+      background: var(--white);
+      box-shadow: 0 4px 32px rgba(13,27,42,0.10);
+    }
 
-        .profile-pic {
-    width: 120px;
-    height: 120px;
-    margin: 0 auto 1.5rem;
-    border-radius: 50%;
-    overflow: hidden;
-    border: 4px solid #3b82f6;
-    background: #334155;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
+    /* ── HEADER ── */
+    .header {
+      background: var(--navy);
+      padding: 2.5rem 3rem;
+      display: flex;
+      align-items: center;
+      gap: 2.5rem;
+    }
 
-.profile-pic img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-}
+    .header-avatar {
+      width: 96px;
+      height: 96px;
+      border-radius: 50%;
+      border: 3px solid var(--accent);
+      overflow: hidden;
+      flex-shrink: 0;
+      background: var(--navy-mid);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
 
-        .name {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: white;
-            margin-bottom: 0.25rem;
-            text-align: center;
-        }
+    .header-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
 
-        .title {
-            font-size: 1rem;
-            font-weight: 500;
-            color: #94a3b8;
-            text-align: center;
-            margin-bottom: 2rem;
-            letter-spacing: 0.5px;
-        }
+    .header-avatar .initials {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      color: var(--accent);
+      font-weight: 700;
+    }
 
-        .section-title {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: white;
-            margin: 2rem 0 1rem;
-            letter-spacing: 0.5px;
-            border-bottom: 2px solid #334155;
-            padding-bottom: 0.5rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
+    .header-text { flex: 1; }
 
-        .section-title i {
-            color: #3b82f6;
-            width: 20px;
-        }
+    .header-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: 0.01em;
+      line-height: 1.2;
+    }
 
-        .contact-info p {
-            margin-bottom: 0.75rem;
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            font-size: 0.9rem;
-        }
+    .header-role {
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: #7eaecf;
+      margin-top: 0.3rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
 
-        .contact-info i {
-            width: 20px;
-            color: #3b82f6;
-        }
+    .header-contact {
+      margin-top: 1rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem 1.5rem;
+    }
 
-        .skill-tag {
-            background: #1e293b;
-            color: #e2e8f0;
-            padding: 0.5rem 1rem;
-            border-radius: 30px;
-            font-size: 0.85rem;
-            font-weight: 500;
-            display: inline-block;
-            margin: 0.25rem 0.25rem 0 0;
-            border: 1px solid #334155;
-            /* Aseguramos centrado del contenido */
-            text-align: center;
-        }
+    .header-contact span {
+      font-size: 0.875rem;
+      color: #a8c4db;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
 
-        .skill-tag i {
-            margin-right: 5px;
-            color: #3b82f6;
-        }
+    .header-contact span::before {
+      content: attr(data-icon);
+      font-size: 0.8rem;
+    }
 
-        .highlight {
-            background: #3b82f6;
-            color: white;
-            border: none;
-        }
+    /* ── BODY LAYOUT ── */
+    .body {
+      display: grid;
+      grid-template-columns: 1fr 2px 2fr;
+    }
 
-        /* SECCIÓN PRINCIPAL DERECHA */
-        .main {
-            padding: 2rem;
-            background: white;
-        }
+    .divider {
+      background: var(--border);
+    }
 
-        .main .section-title {
-            color: #0f172a;
-            border-bottom: 2px solid #e2e8f0;
-            margin-top: 1.5rem;
-        }
+    /* ── LEFT COLUMN ── */
+    .left {
+      padding: 2rem 2rem 2rem 3rem;
+    }
 
-        .main .section-title:first-of-type {
-            margin-top: 0;
-        }
+    /* ── RIGHT COLUMN ── */
+    .right {
+      padding: 2rem 3rem 2rem 2rem;
+    }
 
-        .summary {
-            background: #f8fafc;
-            padding: 1.25rem;
-            border-radius: 16px;
-            margin: 1rem 0 2rem;
-            border-left: 4px solid #3b82f6;
-            font-size: 0.95rem;
-            color: #334155;
-        }
+    /* ── SECTION ── */
+    .section { margin-bottom: 2rem; }
 
-        .experience-item, .education-item {
-            margin-bottom: 1.75rem;
-        }
+    .section-label {
+      font-family: 'Playfair Display', serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.8rem;
+      padding-bottom: 0.4rem;
+      border-bottom: 1px solid var(--border);
+    }
 
-        .item-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-            flex-wrap: wrap;
-            margin-bottom: 0.25rem;
-        }
+    /* ── SKILLS ── */
+    .skill-list { list-style: none; }
 
-        .item-title {
-            font-weight: 700;
-            font-size: 1.1rem;
-            color: #0f172a;
-        }
+    .skill-list li {
+      font-size: 0.9rem;
+      color: var(--text);
+      padding: 0.35rem 0;
+      border-bottom: 1px solid #edf2f7;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
 
-        .item-subtitle {
-            font-weight: 600;
-            color: #3b82f6;
-        }
+    .skill-list li:last-child { border-bottom: none; }
 
-        .item-date {
-            font-size: 0.85rem;
-            color: #64748b;
-            background: #f1f5f9;
-            padding: 0.2rem 0.75rem;
-            border-radius: 30px;
-        }
+    .skill-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      flex-shrink: 0;
+    }
 
-        .item-description {
-            font-size: 0.95rem;
-            color: #475569;
-            margin-top: 0.5rem;
-            list-style-type: none;
-        }
+    /* ── LANGUAGES ── */
+    .lang-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.35rem 0;
+      border-bottom: 1px solid #edf2f7;
+      font-size: 0.9rem;
+    }
 
-        .item-description li {
-            margin-bottom: 0.5rem;
-            display: flex;
-            align-items: flex-start;
-            gap: 0.5rem;
-        }
+    .lang-row:last-child { border-bottom: none; }
 
-        .item-description li i {
-            color: #3b82f6;
-            font-size: 0.8rem;
-            margin-top: 0.2rem;
-        }
+    .lang-level {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--accent);
+      background: var(--accent-light);
+      padding: 0.1rem 0.5rem;
+      border-radius: 3px;
+    }
 
-        .grid-2 {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1rem;
-            margin: 1rem 0;
-        }
+    /* ── QUALITIES ── */
+    .quality-list { list-style: none; }
 
-        .qualities-box {
-            background: #f8fafc;
-            border-radius: 16px;
-            padding: 1.25rem;
-            text-align: center;
-            transition: all 0.2s;
-            border: 1px solid #e2e8f0;
-        }
+    .quality-list li {
+      font-size: 0.88rem;
+      color: var(--muted);
+      padding: 0.3rem 0;
+      padding-left: 1rem;
+      position: relative;
+    }
 
-        .qualities-box:hover {
-            border-color: #3b82f6;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-        }
+    .quality-list li::before {
+      content: "—";
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+    }
 
-        .qualities-number {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: #3b82f6;
-            line-height: 1;
-        }
+    /* ── PROFILE SUMMARY ── */
+    .summary-text {
+      font-size: 0.92rem;
+      color: var(--muted);
+      line-height: 1.75;
+      border-left: 3px solid var(--accent);
+      padding-left: 1rem;
+    }
 
-        .qualities-label {
-            font-weight: 600;
-            margin: 0.5rem 0 0.25rem;
-            color: #0f172a;
-        }
+    /* ── EXPERIENCE / EDUCATION ITEM ── */
+    .entry { margin-bottom: 1.5rem; }
+    .entry:last-child { margin-bottom: 0; }
 
-        .qualities-desc {
-            font-size: 0.85rem;
-            color: #64748b;
-        }
+    .entry-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 0.25rem;
+      margin-bottom: 0.15rem;
+    }
 
-        .fast-learner {
-            background: linear-gradient(145deg, #f8fafc, #ffffff);
-            border: 2px dashed #3b82f6;
-        }
+    .entry-title {
+      font-weight: 600;
+      font-size: 0.96rem;
+      color: var(--text);
+    }
 
-        hr {
-            border: none;
-            border-top: 1px solid #e2e8f0;
-            margin: 1.5rem 0;
-        }
+    .entry-date {
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--muted);
+      white-space: nowrap;
+    }
 
-        /* Responsive */
-        @media (max-width: 768px) {
-            .resume {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+    .entry-org {
+      font-size: 0.85rem;
+      color: var(--accent);
+      font-weight: 500;
+      margin-bottom: 0.4rem;
+    }
+
+    .entry-bullets {
+      list-style: none;
+      margin-top: 0.4rem;
+    }
+
+    .entry-bullets li {
+      font-size: 0.88rem;
+      color: var(--muted);
+      padding: 0.2rem 0 0.2rem 1rem;
+      position: relative;
+      line-height: 1.55;
+    }
+
+    .entry-bullets li::before {
+      content: "·";
+      position: absolute;
+      left: 0.25rem;
+      color: var(--accent);
+      font-size: 1.1rem;
+      line-height: 1.3;
+    }
+
+    /* ── FOOTER ── */
+    .footer {
+      background: var(--navy);
+      padding: 0.9rem 3rem;
+      text-align: right;
+      font-size: 0.78rem;
+      color: #5a7a96;
+      font-style: italic;
+    }
+
+    @media (max-width: 680px) {
+      .header { flex-direction: column; padding: 2rem 1.5rem; }
+      .body { grid-template-columns: 1fr; }
+      .divider { width: 100%; height: 1px; }
+      .left, .right { padding: 1.5rem; }
+      .footer { padding: 0.9rem 1.5rem; }
+    }
+  </style>
 </head>
 <body>
-    <div class="resume">
-        <!-- SIDEBAR IZQUIERDA: DATOS PERSONALES + HABILIDADES -->
-        <div class="sidebar">
-            <div class="profile-pic">
-    <img src="HV-IMAGE.jpg" alt="Foto hoja de vida">
-            </div>
-            <div class="name">Julio César Méndez Montero</div>
-            <div class="title">Estudiante de Ingeniería de Sistemas y Computación</div>
+<div class="page">
 
-            <div class="section-title">
-                <i class="fas fa-address-card"></i> Contacto
-            </div>
-            <div class="contact-info">
-                <p><i class="fas fa-envelope"></i> mendezmonterojuliocesar09@gmail</p>
-                <p><i class="fas fa-phone-alt"></i> +57 3204045599</p>
-                <p><i class="fas fa-map-marker-alt"></i> Bogotá, Colombia</p>
-            </div>
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-avatar">
+      <img src="HV-IMAGE.jpg" alt="Foto" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+      <span class="initials" style="display:none;">JM</span>
+    </div>
+    <div class="header-text">
+      <div class="header-name">Julio César Méndez Montero</div>
+      <div class="header-role">Ingeniería de Sistemas y Computación</div>
+      <div class="header-contact">
+        <span data-icon="✉">mendezmonterojuliocesar09@gmail.com</span>
+        <span data-icon="☎">+57 320 404 5599</span>
+        <span data-icon="📍">Bogotá, Colombia</span>
+      </div>
+    </div>
+  </header>
 
-            <div class="section-title">
-                <i class="fas fa-code"></i> Habilidades técnicas
-            </div>
-            <div>
-                <!-- Eliminados los iconos de Python y R, solo texto centrado -->
-                <span class="skill-tag highlight">Python</span>
-                <span class="skill-tag highlight">R</span>
-                <span class="skill-tag highlight">HTML</span>
-            </div>
+  <!-- BODY -->
+  <div class="body">
 
-            <div class="section-title">
-                <i class="fas fa-heart"></i> Cualidades personales
-            </div>
-            <div>
-                <span class="skill-tag"><i class="fas fa-rocket"></i> Rápido aprendizaje</span>
-                <span class="skill-tag"><i class="fas fa-users"></i> Trabajo en equipo</span>
-                <span class="skill-tag"><i class="fas fa-lightbulb"></i> Pensamiento analítico</span>
-                <span class="skill-tag"><i class="fas fa-globe"></i> Mentalidad global-local</span>
-                <span class="skill-tag"><i class="fas fa-microchip"></i> Interés en IA</span>
-                <span class="skill-tag"><i class="fas fa-calculator"></i> Control numérico</span>
-            </div>
+    <!-- LEFT -->
+    <div class="left">
 
-            <!-- Pequeño guiño a NEORIS -->
-            <div style="margin-top: 2rem; font-size: 0.8rem; color: #94a3b8; text-align: center;">
-                <i class="fas fa-quote-right"></i> Conectando capacidades globales con ecosistemas locales
-            </div>
+      <div class="section">
+        <div class="section-label">Habilidades técnicas</div>
+        <ul class="skill-list">
+          <li><span class="skill-dot"></span>Python — programación estructurada y análisis de datos</li>
+          <li><span class="skill-dot"></span>R — estadística descriptiva y visualización</li>
+          <li><span class="skill-dot"></span>HTML — maquetación web básica</li>
+          <li><span class="skill-dot"></span>C++ — fundamentos de programación</li>
+          <li><span class="skill-dot"></span>Programación integrada con IA (Claude, ChatGPT, Copilot)</li>
+          <li><span class="skill-dot"></span>Automatización con Zapier</li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <div class="section-label">Idiomas</div>
+        <div class="lang-row">
+          <span>Español</span>
+          <span class="lang-level">Nativo</span>
         </div>
-
-        <!-- SECCIÓN PRINCIPAL DERECHA -->
-        <div class="main">
-            <!-- Resumen / Perfil profesional -->
-            <div class="section-title">
-                <i class="fas fa-user-tie"></i> Perfil profesional
-            </div>
-            <div class="summary">
-                <strong>Estudiante de Ingeniería de Sistemas con pasión por la transformación digital y la inteligencia artificial.</strong> 
-                Conocimientos sólidos en <strong>Python y R </strong> aplicados a problemas numéricos y de pensamiento computacional. (Adicional, conocimientos básicos en lenguajes como C + + y HTML). 
-                Capacidad demostrada para aprender rápidamente nuevas tecnologías y adaptarme a entornos globales. 
-                Busco iniciar mi trayectoria laboral como <strong>ingeniero</strong> para conectar capacidades globales, 
-                contribuyendo con entusiasmo, mentalidad analítica y ganas de innovar.
-            </div>
-
-            <!-- Logros académicos y personales -->
-            <div class="section-title">
-                <i class="fas fa-cubes"></i> Logros académicos y personales
-            </div>
-            <div class="grid-2">
-                <div class="qualities-box">
-                    <div class="qualities-number">>80%</div>
-                    <div class="qualities-label">Promedio académico</div>
-                    <div class="qualities-desc">en cursos de programación y matemáticas</div>
-                </div>
-                <div class="qualities-box fast-learner">
-                    <div class="qualities-number">⚡</div>
-                    <div class="qualities-label">Aprendizaje rápido</div>
-                    <div class="qualities-desc">Nuevas herramientas dominadas en semanas</div>
-                </div>
-                <div class="qualities-box">
-                    <div class="qualities-number">🧠</div>
-                    <div class="qualities-label">Pensamiento numérico</div>
-                    <div class="qualities-desc">Base sólida en estadística y lógica</div>
-                </div>
-                <div class="qualities-box">
-                    <div class="qualities-number">🌎</div>
-                    <div class="qualities-label">Visión global-local</div>
-                    <div class="qualities-desc">Interés en conectar tecnología con impacto local</div>
-                </div>
-            </div>
-
-            <!-- Formación universitaria destacada -->
-            <div class="section-title">
-                <i class="fas fa-university"></i> Formación universitaria destacada
-            </div>
-            <div class="experience-item">
-                <div class="item-header">
-                    <span class="item-title">Ingeniería de Sistemas y Computación</span>
-                    <span class="item-date">2025 - actualidad</span>
-                </div>
-                <div class="item-subtitle">Universidad Central de Colombia</div>
-                <ul class="item-description">
-                    <li><i class="fas fa-chevron-right"></i> <strong>Python:</strong> Programación estructurada, manejo de datos y resolución de problemas.</li>
-                    <li><i class="fas fa-chevron-right"></i> <strong>Pensamiento numérico con R:</strong> Análisis de datos, estadística descriptiva y visualización básica.</li>
-                    <li><i class="fas fa-chevron-right"></i> <strong>Arquitectura computacional:</strong> Fundamentos de hardware, lógica digital y organización de computadores.</li>
-                    <li><i class="fas fa-chevron-right"></i> <strong>Pensamiento computacional:</strong> Algoritmos, abstracción y descomposición de problemas.</li>
-                </ul>
-            </div>
-
-            <!-- Educación formal -->
-            <div class="section-title">
-                <i class="fas fa-graduation-cap"></i> Educación
-            </div>
-            <div class="education-item">
-                <div class="item-header">
-                    <span class="item-title">Ingeniería de Sistemas y Computación</span>
-                    <span class="item-date">2025 - actualidad</span>
-                </div>
-                <div class="item-subtitle">Universidad Central de Colombia</div>
-                <div class="item-description">
-                    Cursos en curso: Programación I, Pensamiento numérico, Arquitectura computacional, Pensamiento computacional.
-                </div>
-            </div>
-            <div class="education-item">
-                <div class="item-header">
-                    <span class="item-title">Bachiller Académico</span>
-                    <span class="item-date">2024</span>
-                </div>
-                <div class="item-subtitle">FITS</div>
-            </div>
-
-            <!-- Idiomas -->
-            <div class="section-title">
-                <i class="fas fa-language"></i> Idiomas
-            </div>
-            <div style="display: flex; gap: 2rem; flex-wrap: wrap;">
-                <div><span style="font-weight: 600;">Español:</span> Nativo</div>
-                <div><span style="font-weight: 600;">Inglés:</span> Intermedio (B1) - en proceso de mejora para entornos globales</div>
-            </div>
-
-            <!-- Frase de cierre alineada con NEORIS -->
-            <div style="margin-top: 2rem; text-align: right; font-style: italic; color: #64748b; border-top: 1px solid #e2e8f0; padding-top: 1rem;">
-                <i class="fas fa-arrow-right" style="color: #3b82f6;"></i> 
-                "Combinar excelencia en ingeniería con la innovación de la IA" — ese es el tipo de reto que busco.
-            </div>
+        <div class="lang-row">
+          <span>Inglés</span>
+          <span class="lang-level">B1 — Intermedio</span>
         </div>
+      </div>
+
+      <div class="section">
+        <div class="section-label">Cualidades personales</div>
+        <ul class="quality-list">
+          <li>Aprendizaje rápido de nuevas tecnologías</li>
+          <li>Trabajo colaborativo en equipo</li>
+          <li>Pensamiento analítico y numérico</li>
+          <li>Interés activo en inteligencia artificial</li>
+          <li>Orientación a resultados e innovación</li>
+          <li>Mentalidad global con enfoque local</li>
+        </ul>
+      </div>
+
     </div>
 
-    <!-- Nota de personalización (invisible) -->
-    <!-- 
-        ============================================================
-        HOJA DE VIDA OPTIMIZADA PARA NEORIS - VERSIÓN FINAL
-        - Iconos eliminados de Python y R, solo texto centrado.
-        - Universidad: Universidad Central de Colombia
-        - Colegio: FITS
-        - Fechas correctas: 2025 (U) y 2024 (colegio)
-        - Perfil alineado con misión/visión de NEORIS
-        ============================================================
-    -->
+    <div class="divider"></div>
+
+    <!-- RIGHT -->
+    <div class="right">
+
+      <div class="section">
+        <div class="section-label">Perfil profesional</div>
+        <p class="summary-text">
+          Estudiante de tercer semestre de Ingeniería de Sistemas con base sólida en Python, R y herramientas de automatización. 
+          Manejo programación integrada con inteligencia artificial y plataformas como Zapier para optimizar flujos de trabajo. 
+          Combino pensamiento lógico con curiosidad tecnológica y capacidad de adaptarme rápidamente a entornos cambiantes. 
+          Busco iniciar mi trayectoria profesional aportando entusiasmo, rigor analítico e interés genuino en la transformación digital.
+        </p>
+      </div>
+
+      <div class="section">
+        <div class="section-label">Formación académica</div>
+
+        <div class="entry">
+          <div class="entry-header">
+            <span class="entry-title">Ingeniería de Sistemas y Computación</span>
+            <span class="entry-date">2025 — Actualidad</span>
+          </div>
+          <div class="entry-org">Universidad Central — Bogotá, Colombia</div>
+          <ul class="entry-bullets">
+            <li>Programación I: lógica estructurada y resolución de problemas en Python.</li>
+            <li>Pensamiento numérico con R: estadística descriptiva, análisis y visualización de datos.</li>
+            <li>Arquitectura computacional: fundamentos de hardware, lógica digital y organización de computadores.</li>
+            <li>Pensamiento computacional: algoritmos, abstracción y descomposición de problemas.</li>
+          </ul>
+        </div>
+
+        <div class="entry">
+          <div class="entry-header">
+            <span class="entry-title">Bachiller Académico</span>
+            <span class="entry-date">2024</span>
+          </div>
+          <div class="entry-org">Institución Educativa FITS</div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-label">Logros destacados</div>
+
+        <div class="entry">
+          <div class="entry-header">
+            <span class="entry-title">Promedio superior al 80 % en cursos técnicos</span>
+          </div>
+          <ul class="entry-bullets">
+            <li>Desempeño consistente en Programación I, Pensamiento numérico y Arquitectura computacional.</li>
+          </ul>
+        </div>
+
+        <div class="entry">
+          <div class="entry-header">
+            <span class="entry-title">Dominio autónomo de herramientas de IA y automatización</span>
+          </div>
+          <ul class="entry-bullets">
+            <li>Integración práctica de modelos de lenguaje en flujos de trabajo académicos y personales.</li>
+            <li>Automatización de tareas repetitivas mediante Zapier sin experiencia laboral previa formal.</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    "Combinar excelencia en ingeniería con la innovación de la IA" — ese es el tipo de reto que busco.
+  </div>
+
+</div>
 </body>
-
 </html>
-
-
