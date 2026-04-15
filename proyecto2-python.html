@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Análisis Netflix — Python | Julio Méndez</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=DM+Sans:wght@300;400;600&display=swap" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #0d1b2a;
+      --navy-mid: #1b2d42;
+      --accent: #1a6baa;
+      --accent-light: #d6e8f7;
+      --text: #1e2d3d;
+      --muted: #5a6e82;
+      --border: #d1dce6;
+      --bg: #f5f8fb;
+      --white: #ffffff;
+      --terminal-bg: #1e1e1e;
+      --terminal-text: #d4d4d4;
+      --green: #4ec9b0;
+      --yellow: #dcdcaa;
+      --orange: #ce9178;
+      --comment: #6a9955;
+      --kw: #569cd6;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      padding: 2rem 1rem;
+    }
+
+    .page { max-width: 1020px; margin: 0 auto; }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--accent);
+      text-decoration: none;
+      margin-bottom: 1.5rem;
+    }
+    .back-link:hover { opacity: 0.75; }
+
+    /* HEADER */
+    .project-header {
+      background: var(--navy);
+      padding: 2rem 2.5rem;
+      border-radius: 8px 8px 0 0;
+    }
+    .tag {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: rgba(26,107,170,0.2);
+      padding: 0.2rem 0.6rem;
+      border-radius: 3px;
+      display: inline-block;
+      margin-bottom: 0.7rem;
+    }
+    .project-header h1 {
+      font-size: 1.7rem;
+      font-weight: 700;
+      color: var(--white);
+    }
+    .project-header p {
+      font-size: 0.9rem;
+      color: #7eaecf;
+      margin-top: 0.5rem;
+    }
+
+    /* CONTENT */
+    .content {
+      background: var(--white);
+      box-shadow: 0 4px 32px rgba(13,27,42,0.10);
+      border-radius: 0 0 8px 8px;
+      padding: 2rem 2.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 2.5rem;
+    }
+
+    /* STATS ROW */
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+    }
+
+    .stat-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 1rem 1.2rem;
+      text-align: center;
+    }
+
+    .stat-card .stat-num {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--accent);
+      line-height: 1.1;
+    }
+
+    .stat-card .stat-label {
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin-top: 0.3rem;
+      line-height: 1.4;
+    }
+
+    /* SECTION LABEL */
+    .section-title {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--white);
+      background: var(--navy);
+      display: inline-block;
+      padding: 0.22rem 0.7rem;
+      border-radius: 3px;
+      margin-bottom: 1.2rem;
+    }
+
+    /* CHARTS GRID */
+    .charts-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+
+    .chart-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.2rem 1.5rem;
+    }
+
+    .chart-card h3 {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 0.3rem;
+    }
+
+    .chart-card .chart-sub {
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin-bottom: 1rem;
+    }
+
+    .chart-wrap {
+      position: relative;
+      height: 200px;
+    }
+
+    /* PIPELINE */
+    .pipeline {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      flex-wrap: wrap;
+    }
+
+    .pipe-step {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 0.7rem 1rem;
+      text-align: center;
+      flex: 1;
+      min-width: 130px;
+    }
+
+    .pipe-step .ps-num {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    .pipe-step .ps-label {
+      font-size: 0.72rem;
+      color: var(--muted);
+      margin-top: 0.15rem;
+    }
+
+    .pipe-arrow {
+      font-size: 1.2rem;
+      color: var(--border);
+      padding: 0 0.4rem;
+      flex-shrink: 0;
+    }
+
+    .pipe-step.highlight { border-color: var(--accent); background: var(--accent-light); }
+    .pipe-step.highlight .ps-num { color: var(--navy); }
+
+    /* CODE BLOCK */
+    .code-block {
+      background: var(--terminal-bg);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .code-bar {
+      background: #2d2d2d;
+      padding: 0.55rem 1rem;
+      font-size: 0.72rem;
+      color: #888;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
+    .dot-r { background: #ff5f57; }
+    .dot-y { background: #ffbd2e; }
+    .dot-g { background: #28c840; }
+
+    pre {
+      padding: 1.2rem 1.5rem;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.78rem;
+      line-height: 1.75;
+      color: var(--terminal-text);
+      overflow-x: auto;
+    }
+
+    .kw  { color: var(--kw); }
+    .fn  { color: var(--yellow); }
+    .str { color: var(--orange); }
+    .num { color: #b5cea8; }
+    .cmt { color: var(--comment); font-style: italic; }
+    .var { color: #9cdcfe; }
+
+    @media (max-width: 680px) {
+      .stats-row { grid-template-columns: 1fr 1fr; }
+      .charts-grid { grid-template-columns: 1fr; }
+      .content { padding: 1.5rem; }
+      .project-header { padding: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <a href="index.html" class="back-link">← Volver a la Hoja de Vida</a>
+
+  <div class="project-header">
+    <span class="tag">Python · Pandas · Matplotlib · Análisis de datos</span>
+    <h1>Análisis de Base de Datos Netflix</h1>
+    <p>Limpieza, filtrado y visualización de 8.807 títulos usando Pandas y Matplotlib — Programación Python (FICB, Universidad Central).</p>
+  </div>
+
+  <div class="content">
+
+    <!-- PIPELINE LIMPIEZA -->
+    <div>
+      <div class="section-title">Pipeline de limpieza</div>
+      <div class="pipeline">
+        <div class="pipe-step">
+          <div class="ps-num">8.807</div>
+          <div class="ps-label">Registros originales</div>
+        </div>
+        <div class="pipe-arrow">→</div>
+        <div class="pipe-step">
+          <div class="ps-num">3.475</div>
+          <div class="ps-label">Filas con nulos eliminadas</div>
+        </div>
+        <div class="pipe-arrow">→</div>
+        <div class="pipe-step highlight">
+          <div class="ps-num">5.332</div>
+          <div class="ps-label">Registros limpios para análisis</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- KPI STATS -->
+    <div>
+      <div class="section-title">Resultados del análisis</div>
+      <div class="stats-row">
+        <div class="stat-card">
+          <div class="stat-num">5.185</div>
+          <div class="stat-label">Películas en el dataset limpio</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">147</div>
+          <div class="stat-label">Series de TV en el dataset</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">1.065</div>
+          <div class="stat-label">Películas con duración &gt; 120 min</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">8</div>
+          <div class="stat-label">Series con más de 5 temporadas</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- GRÁFICAS -->
+    <div>
+      <div class="section-title">Visualizaciones</div>
+      <div class="charts-grid">
+
+        <div class="chart-card">
+          <h3>Películas vs Series de TV</h3>
+          <div class="chart-sub">Distribución del tipo de contenido en el dataset limpio</div>
+          <div class="chart-wrap">
+            <canvas id="chartTipo"></canvas>
+          </div>
+        </div>
+
+        <div class="chart-card">
+          <h3>Duración de películas</h3>
+          <div class="chart-sub">Películas con duración ≤ 120 min vs &gt; 120 min</div>
+          <div class="chart-wrap">
+            <canvas id="chartDuracion"></canvas>
+          </div>
+        </div>
+
+        <div class="chart-card">
+          <h3>Contenido añadido — Sep 2021</h3>
+          <div class="chart-sub">86 títulos agregados a Netflix en septiembre de 2021</div>
+          <div class="chart-wrap">
+            <canvas id="chartSep"></canvas>
+          </div>
+        </div>
+
+        <div class="chart-card">
+          <h3>Series por número de temporadas</h3>
+          <div class="chart-sub">De 147 series: 8 tienen más de 5 temporadas</div>
+          <div class="chart-wrap">
+            <canvas id="chartTemporadas"></canvas>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  const ACCENT   = '#1a6baa';
+  const ACCENT2  = '#4ec9b0';
+  const ACCENT3  = '#ce9178';
+  const ACCENT4  = '#c586c0';
+  const BG       = '#f5f8fb';
+  const MUTED    = '#5a6e82';
+
+  const defaults = {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: { labels: { font: { family: 'DM Sans', size: 12 }, color: MUTED } }
+    }
+  };
+
+  // 1. Tipo de contenido — barras
+  new Chart(document.getElementById('chartTipo'), {
+    type: 'bar',
+    data: {
+      labels: ['Películas', 'Series de TV'],
+      datasets: [{
+        label: 'Cantidad',
+        data: [5185, 147],
+        backgroundColor: [ACCENT, ACCENT2],
+        borderRadius: 5,
+        borderSkipped: false,
+      }]
+    },
+    options: {
+      ...defaults,
+      scales: {
+        y: { grid: { color: '#e8eef4' }, ticks: { color: MUTED, font: { family: 'DM Sans' } } },
+        x: { grid: { display: false },  ticks: { color: MUTED, font: { family: 'DM Sans' } } }
+      },
+      plugins: { ...defaults.plugins, legend: { display: false } }
+    }
+  });
+
+  // 2. Duración películas — doughnut
+  new Chart(document.getElementById('chartDuracion'), {
+    type: 'doughnut',
+    data: {
+      labels: ['≤ 120 min', '> 120 min'],
+      datasets: [{
+        data: [5185 - 1065, 1065],
+        backgroundColor: [ACCENT, ACCENT3],
+        borderWidth: 2,
+        borderColor: BG,
+      }]
+    },
+    options: {
+      ...defaults,
+      cutout: '60%',
+      plugins: {
+        legend: { position: 'bottom', labels: { font: { family: 'DM Sans', size: 11 }, color: MUTED, padding: 12 } }
+      }
+    }
+  });
+
+  // 3. Sep 2021 — horizontal bar
+  new Chart(document.getElementById('chartSep'), {
+    type: 'bar',
+    data: {
+      labels: ['Ago 2021', 'Sep 2021', 'Oct 2021'],
+      datasets: [{
+        label: 'Títulos añadidos',
+        data: [62, 86, 74],
+        backgroundColor: [MUTED + '55', ACCENT, MUTED + '55'],
+        borderRadius: 5,
+        borderSkipped: false,
+      }]
+    },
+    options: {
+      ...defaults,
+      indexAxis: 'y',
+      scales: {
+        x: { grid: { color: '#e8eef4' }, ticks: { color: MUTED, font: { family: 'DM Sans' } } },
+        y: { grid: { display: false },  ticks: { color: MUTED, font: { family: 'DM Sans' } } }
+      },
+      plugins: { ...defaults.plugins, legend: { display: false } }
+    }
+  });
+
+  // 4. Temporadas — pie
+  new Chart(document.getElementById('chartTemporadas'), {
+    type: 'pie',
+    data: {
+      labels: ['1–5 temporadas', '> 5 temporadas'],
+      datasets: [{
+        data: [139, 8],
+        backgroundColor: [ACCENT, ACCENT4],
+        borderWidth: 2,
+        borderColor: BG,
+      }]
+    },
+    options: {
+      ...defaults,
+      plugins: {
+        legend: { position: 'bottom', labels: { font: { family: 'DM Sans', size: 11 }, color: MUTED, padding: 12 } }
+      }
+    }
+  });
+</script>
+</body>
+</html>
