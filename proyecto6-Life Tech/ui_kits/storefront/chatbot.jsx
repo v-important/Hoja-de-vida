@@ -327,22 +327,7 @@ function ChatBotPanel({ onClose }) {
   const suggestions = ["Valorant", "GTA VI", "Minecraft con shaders", "Setup streaming", "Presupuesto $3M"];
 
   return (
-    <div style={{
-      position: "fixed",
-      bottom: 24,
-      right: 24,
-      zIndex: 300,
-      width: 360,
-      height: 500,
-      background: "#0e0e12",
-      borderRadius: 16,
-      border: "1px solid rgba(255,255,255,0.1)",
-      boxShadow: "0 8px 48px rgba(0,0,0,0.6), 0 0 0 1px rgba(34,211,238,0.08)",
-      display: "flex",
-      flexDirection: "column",
-      overflow: "hidden",
-      animation: "lt-chat-pop .25s cubic-bezier(0.34,1.56,0.64,1)",
-    }}>
+    <div className="lt-chat-widget">
         {/* Header */}
         <div style={{
           padding: "16px 20px", borderBottom: "1px solid var(--border)",
