@@ -1,0 +1,17 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<link href="../colors_and_type.css" rel="stylesheet">
+<style>
+  body{margin:0;padding:24px;background:var(--bg);display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  .box{height:84px;border-radius:12px;background:var(--surface-2);border:1px solid var(--border);display:flex;flex-direction:column;justify-content:center;align-items:center;gap:4px}
+  .tok{font:600 10px/1 var(--font-sans);letter-spacing:.12em;text-transform:uppercase;color:var(--fg-3)}
+  .v{font:500 11px/1 var(--font-mono);color:var(--fg-2)}
+  .glow{box-shadow:var(--shadow-glow-red);border-color:var(--brand-red)}
+  .card{box-shadow:var(--shadow-card)}
+  .elev{box-shadow:var(--shadow-elevated)}
+</style></head>
+<body class="lt">
+  <div class="box card"><span class="tok">shadow-card</span><span class="v">subtle</span></div>
+  <div class="box elev"><span class="tok">shadow-elevated</span><span class="v">modal</span></div>
+  <div class="box glow"><span class="tok">shadow-glow-red</span><span class="v">brand</span></div>
+</body></html>

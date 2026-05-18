@@ -1,0 +1,84 @@
+{
+  "2f564d06-820a-45bb-87d0-ecc30a2aa120": {
+    "emp": {
+      "id": 1,
+      "username": "admin",
+      "password": "lt2024!",
+      "name": "Administrador",
+      "role": "admin",
+      "avatar": "AD"
+    },
+    "expiresAt": 1781615348486
+  },
+  "0ccf5994-8d06-4916-a410-63aadb1b3d5b": {
+    "emp": {
+      "id": 1,
+      "username": "admin",
+      "password": "lt2024!",
+      "name": "Administrador",
+      "role": "admin",
+      "avatar": "AD"
+    },
+    "expiresAt": 1781615359941
+  },
+  "f4b54f37-8e04-41ca-b791-fee7af299061": {
+    "emp": {
+      "id": 3,
+      "username": "ana",
+      "password": "lt.ana",
+      "name": "Ana Martínez",
+      "role": "employee",
+      "avatar": "AM"
+    },
+    "expiresAt": 1781615359944
+  },
+  "1bcdd6dc-c44c-4c9f-b304-dfd019b875a9": {
+    "emp": {
+      "id": 2,
+      "username": "carlos",
+      "password": "emp123",
+      "name": "Carlos López",
+      "role": "employee",
+      "avatar": "CL"
+    },
+    "expiresAt": 1781615359945
+  },
+  "7d4ff209-352e-4598-8d45-9e09bf44a018": {
+    "emp": {
+      "id": 1,
+      "username": "admin",
+      "password": "lt2024!",
+      "name": "Administrador",
+      "role": "admin",
+      "avatar": "AD"
+    },
+    "expiresAt": 1781615437764
+  },
+  "c176ec3b-89b0-46ed-ac5b-cf7dedc304fe": {
+    "emp": {
+      "id": 1,
+      "name": "Administrador",
+      "role": "admin",
+      "avatar": "AD"
+    },
+    "expiresAt": 1781645065224
+  },
+  "61a62de0-1455-4ec6-9d1e-0fac979fae2d": {
+    "emp": {
+      "id": 2,
+      "name": "Carlos López",
+      "role": "employee",
+      "avatar": "CL"
+    },
+    "expiresAt": 1781645065295
+  },
+  "90cee7f4-d948-4027-8a87-296825d1618f": {
+    "emp": {
+      "id": 1,
+      "name": "Administrador",
+      "role": "admin",
+      "avatar": "AD"
+    },
+    "expiresAt": 1781645264288
+  }
+}

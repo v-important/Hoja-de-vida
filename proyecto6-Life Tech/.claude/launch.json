@@ -1,0 +1,17 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "life-tech",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["serve", "ui_kits/storefront", "-p", "3000", "--no-clipboard"],
+      "port": 3000
+    },
+    {
+      "name": "life-tech-admin",
+      "runtimeExecutable": "node",
+      "runtimeArgs": ["server/server.js"],
+      "port": 3001
+    }
+  ]
+}

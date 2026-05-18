@@ -1,0 +1,282 @@
+/* =========================================================
+   Life Tech — Design Tokens & Base Styles
+   ========================================================= */
+
+/* Fonts — pull from Google Fonts. Self-host later if needed.
+   Add this to your <head> alongside this CSS:
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+   Lucide icons — drop this <script> at end of <body>:
+   <script src="https://unpkg.com/lucide@latest"></script>
+   <script>lucide.createIcons();</script>
+   Use as: <i data-lucide="shopping-cart"></i>
+*/
+
+:root {
+  /* ---------- COLOR — neutrals (dark-first) ---------- */
+  --bg:            #050506;   /* page background, near-black */
+  --bg-grid:       #0d0d10;   /* subtle 1px grid behind cards */
+  --surface:       #0e0e11;   /* card / panel */
+  --surface-2:     #15151a;   /* elevated surface, hover targets */
+  --surface-3:     #1d1d23;   /* most-elevated (modals, dropdowns) */
+  --border:        #26262e;   /* default border */
+  --border-strong: #3a3a44;   /* focused / active border */
+  --border-subtle: #1a1a20;   /* hairlines inside cards */
+
+  /* ---------- COLOR — foreground ---------- */
+  --fg:            #f5f5f7;   /* primary text */
+  --fg-2:          #b8b8c0;   /* secondary text */
+  --fg-3:          #71717a;   /* muted, captions */
+  --fg-4:          #44444c;   /* disabled, very low emphasis */
+  --fg-on-brand:   #ffffff;   /* text on red brand fills */
+
+  /* ---------- COLOR — brand ---------- */
+  --brand-red:        #ef2b2b;  /* primary brand */
+  --brand-red-hover:  #ff3b3b;
+  --brand-red-press:  #d91a1a;
+  --brand-red-soft:   #2a0d10;  /* tinted dark surface */
+  --brand-red-glow:   rgb(239 43 43 / 0.45);
+
+  /* ---------- COLOR — neon accents (use sparingly) ---------- */
+  --neon-yellow:      #ffe600;  /* "live" / online / available */
+  --neon-violet:      #a855f7;  /* AI / smart features */
+  --neon-magenta:     #f0f;     /* rare hero accent only */
+  /* legacy aliases — keep until kits are migrated */
+  --neon-lime:        var(--neon-yellow);
+  --neon-cyan:        var(--neon-violet);
+
+  /* ---------- COLOR — semantic ---------- */
+  --success:    #a855f7;
+  --warning:    #f59e0b;
+  --danger:     #ef2b2b;       /* same as brand — by design */
+  --info:       #22d3ee;
+
+  /* ---------- TYPE — families ---------- */
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  --font-display: "Inter", ui-sans-serif, system-ui, sans-serif; /* same family, weight 900 */
+
+  /* ---------- TYPE — sizes ---------- */
+  --fs-display-xl: clamp(56px, 9vw, 128px);
+  --fs-display:    clamp(40px, 6vw, 80px);
+  --fs-h1:         clamp(32px, 4vw, 56px);
+  --fs-h2:         clamp(24px, 3vw, 40px);
+  --fs-h3:         24px;
+  --fs-h4:         18px;
+  --fs-body-lg:    18px;
+  --fs-body:       15px;
+  --fs-body-sm:    13px;
+  --fs-caption:    12px;
+  --fs-overline:   11px;
+
+  /* ---------- TYPE — weights ---------- */
+  --fw-regular:  400;
+  --fw-medium:   500;
+  --fw-semibold: 600;
+  --fw-bold:     700;
+  --fw-heavy:    800;
+  --fw-black:    900;
+
+  /* ---------- TYPE — line height & tracking ---------- */
+  --lh-tight:   1.0;
+  --lh-snug:    1.15;
+  --lh-normal:  1.5;
+  --lh-loose:   1.7;
+
+  --ls-display: -0.04em;
+  --ls-tight:   -0.02em;
+  --ls-normal:  0em;
+  --ls-mono:    -0.01em;
+  --ls-overline: 0.12em;
+
+  /* ---------- SPACING ---------- */
+  --space-0:   0;
+  --space-1:   4px;
+  --space-2:   8px;
+  --space-3:   12px;
+  --space-4:   16px;
+  --space-5:   24px;
+  --space-6:   32px;
+  --space-7:   48px;
+  --space-8:   64px;
+  --space-9:   96px;
+  --space-10:  128px;
+
+  --gutter: clamp(16px, 4vw, 64px);
+  --content-max: 1280px;
+
+  /* ---------- RADIUS ---------- */
+  --radius-1: 4px;    /* chips, badges */
+  --radius-2: 8px;    /* buttons, inputs */
+  --radius-3: 12px;   /* cards */
+  --radius-4: 20px;   /* sheets, modals */
+  --radius-pill: 999px;
+
+  /* ---------- SHADOW ---------- */
+  --shadow-card:      0 8px 24px -12px rgb(0 0 0 / 0.6);
+  --shadow-elevated:  0 24px 48px -16px rgb(0 0 0 / 0.8);
+  --shadow-glow-red:  0 0 40px -8px var(--brand-red-glow);
+  --shadow-glow-red-strong: 0 0 56px -4px rgb(239 43 43 / 0.6);
+  --shadow-inner-focus: inset 0 0 0 1px var(--brand-red);
+
+  /* ---------- MOTION ---------- */
+  --ease-out:    cubic-bezier(0.22, 1, 0.36, 1);   /* punchy out-quint */
+  --ease-in:     cubic-bezier(0.64, 0, 0.78, 0);
+  --ease-in-out: cubic-bezier(0.83, 0, 0.17, 1);
+  --t-fast:   150ms;
+  --t-base:   220ms;
+  --t-slow:   400ms;
+
+  /* ---------- LAYOUT ---------- */
+  --header-h: 64px;
+  --z-header: 50;
+  --z-sheet:  60;
+  --z-modal:  70;
+  --z-toast:  80;
+}
+
+/* =========================================================
+   Base elements
+   ========================================================= */
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-sans);
+  font-size: var(--fs-body);
+  line-height: var(--lh-normal);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+body.lt {
+  background-image:
+    radial-gradient(circle at 20% -10%, rgb(239 43 43 / 0.08), transparent 50%),
+    radial-gradient(circle at 80% 110%, rgb(34 211 238 / 0.04), transparent 60%);
+  background-attachment: fixed;
+}
+
+::selection { background: var(--brand-red); color: var(--fg-on-brand); }
+
+/* ---------- Type primitives ---------- */
+.lt-display-xl,
+h1.display {
+  font: var(--fw-black) var(--fs-display-xl)/var(--lh-tight) var(--font-display);
+  letter-spacing: var(--ls-display);
+  margin: 0;
+}
+.lt-display,
+h1 {
+  font: var(--fw-black) var(--fs-display)/var(--lh-tight) var(--font-display);
+  letter-spacing: var(--ls-display);
+  margin: 0;
+}
+h2 {
+  font: var(--fw-bold) var(--fs-h1)/var(--lh-snug) var(--font-sans);
+  letter-spacing: var(--ls-tight);
+  margin: 0;
+}
+h3 {
+  font: var(--fw-bold) var(--fs-h2)/var(--lh-snug) var(--font-sans);
+  letter-spacing: var(--ls-tight);
+  margin: 0;
+}
+h4 {
+  font: var(--fw-semibold) var(--fs-h3)/var(--lh-snug) var(--font-sans);
+  letter-spacing: var(--ls-tight);
+  margin: 0;
+}
+h5 {
+  font: var(--fw-semibold) var(--fs-h4)/var(--lh-snug) var(--font-sans);
+  margin: 0;
+}
+p { margin: 0; }
+
+.lt-body-lg { font-size: var(--fs-body-lg); line-height: var(--lh-normal); }
+.lt-body    { font-size: var(--fs-body);    line-height: var(--lh-normal); }
+.lt-body-sm { font-size: var(--fs-body-sm); line-height: var(--lh-normal); color: var(--fg-2); }
+.lt-caption { font-size: var(--fs-caption); color: var(--fg-3); }
+.lt-overline {
+  font-size: var(--fs-overline);
+  letter-spacing: var(--ls-overline);
+  text-transform: uppercase;
+  font-weight: var(--fw-semibold);
+  color: var(--fg-3);
+}
+
+.lt-mono {
+  font-family: var(--font-mono);
+  letter-spacing: var(--ls-mono);
+  font-feature-settings: "ss01", "zero";
+}
+
+a {
+  color: var(--fg);
+  text-decoration: none;
+  position: relative;
+}
+a.lt-link {
+  background-image: linear-gradient(var(--brand-red), var(--brand-red));
+  background-size: 0% 1px;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  transition: background-size var(--t-base) var(--ease-out);
+}
+a.lt-link:hover { background-size: 100% 1px; }
+
+code, kbd, samp { font-family: var(--font-mono); font-size: 0.92em; }
+
+hr {
+  border: 0;
+  border-top: 1px solid var(--border);
+  margin: var(--space-6) 0;
+}
+
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--surface-3); border-radius: 999px; }
+::-webkit-scrollbar-thumb:hover { background: var(--border-strong); }
+
+/* ---------- Reusable utility blocks ---------- */
+.lt-container {
+  max-width: var(--content-max);
+  margin: 0 auto;
+  padding-inline: var(--gutter);
+}
+
+.lt-grid-bg {
+  background-image:
+    linear-gradient(var(--bg-grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--bg-grid) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+/* live indicator dot — used for stock, online, AI status */
+.lt-live-dot {
+  display: inline-block;
+  width: 8px; height: 8px;
+  border-radius: 999px;
+  background: var(--neon-yellow);
+  box-shadow: 0 0 0 4px rgb(255 230 0 / 0.18);
+  animation: lt-pulse 1.4s ease-in-out infinite;
+}
+@keyframes lt-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%      { opacity: 0.55; transform: scale(0.92); }
+}
+
+/* keyframes used elsewhere */
+@keyframes lt-fade-up {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes lt-glow-in {
+  from { box-shadow: 0 0 0 -4px transparent; }
+  to   { box-shadow: var(--shadow-glow-red); }
+}

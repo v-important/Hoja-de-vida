@@ -1,0 +1,24 @@
+{
+  "perif": [
+    "Logitech",
+    "Razer",
+    "Corsair",
+    "Redragon",
+    "HyperX",
+    "Acer"
+  ],
+  "comp": [
+    "ADATA",
+    "AMD",
+    "Antec",
+    "ASUS",
+    "Cooler Master",
+    "Corsair",
+    "Gigabyte",
+    "Intel",
+    "Kingston",
+    "LG",
+    "MSI",
+    "NVIDIA"
+  ]
+}

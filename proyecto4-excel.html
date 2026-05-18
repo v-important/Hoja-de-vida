@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Plan de Gestión de Dinero | Julio Méndez</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:   #1f4e79;
+      --blue:   #2e75b6;
+      --blue-l: #dbe5f1;
+      --green:  #375623;
+      --green-l:#e2efda;
+      --yellow: #fff2cc;
+      --red:    #c00000;
+      --text:   #1e2d3d;
+      --muted:  #5a6e82;
+      --border: #d1dce6;
+      --bg:     #f5f8fb;
+      --white:  #ffffff;
+      --accent: #1a6baa;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      padding: 2rem 1rem;
+    }
+
+    .page { max-width: 1060px; margin: 0 auto; }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--accent);
+      text-decoration: none;
+      margin-bottom: 1.5rem;
+    }
+    .back-link:hover { opacity: 0.75; }
+
+    /* HEADER */
+    .proj-header {
+      background: var(--navy);
+      padding: 2rem 2.5rem;
+      border-radius: 8px 8px 0 0;
+    }
+    .tag {
+      font-size: 0.7rem; font-weight: 700; letter-spacing: 0.18em;
+      text-transform: uppercase; color: #7eaecf;
+      background: rgba(255,255,255,0.1); padding: 0.2rem 0.6rem;
+      border-radius: 3px; display: inline-block; margin-bottom: 0.7rem;
+    }
+    .proj-header h1 { font-size: 1.7rem; font-weight: 700; color: #fff; line-height: 1.2; }
+    .proj-header p  { font-size: 0.9rem; color: #7eaecf; margin-top: 0.5rem; }
+
+    /* TABS */
+    .tabs-bar {
+      background: var(--navy);
+      padding: 0 2rem;
+      display: flex;
+      gap: 0;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+    .tab {
+      font-size: 0.82rem; font-weight: 600;
+      color: rgba(255,255,255,0.5);
+      padding: 0.75rem 1.2rem;
+      cursor: pointer;
+      border-bottom: 3px solid transparent;
+      transition: all 0.15s;
+      white-space: nowrap;
+    }
+    .tab:hover { color: rgba(255,255,255,0.8); }
+    .tab.active { color: #fff; border-bottom-color: #4ec9b0; }
+
+    /* CONTENT */
+    .content {
+      background: var(--white);
+      box-shadow: 0 4px 32px rgba(13,27,42,0.10);
+      border-radius: 0 0 8px 8px;
+      padding: 2rem 2.5rem;
+    }
+
+    .panel { display: none; flex-direction: column; gap: 2rem; }
+    .panel.active { display: flex; }
+
+    /* SECTION TITLE */
+    .sec-title {
+      font-size: 0.65rem; font-weight: 700; letter-spacing: 0.2em;
+      text-transform: uppercase; color: #fff;
+      background: var(--navy); display: inline-block;
+      padding: 0.22rem 0.7rem; border-radius: 3px; margin-bottom: 1.2rem;
+    }
+
+    /* KPI GRID */
+    .kpi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+    .kpi {
+      background: var(--bg); border: 1px solid var(--border);
+      border-radius: 8px; padding: 1.1rem 1.2rem; text-align: center;
+    }
+    .kpi-num { font-size: 1.5rem; font-weight: 700; color: var(--navy); line-height: 1.1; }
+    .kpi-label { font-size: 0.72rem; color: var(--muted); margin-top: 0.3rem; line-height: 1.4; }
+    .kpi.green .kpi-num { color: var(--green); }
+    .kpi.red   .kpi-num { color: var(--red); }
+
+    /* PROGRESS BAR */
+    .progress-wrap { }
+    .progress-label {
+      display: flex; justify-content: space-between;
+      font-size: 0.8rem; color: var(--muted); margin-bottom: 0.5rem;
+    }
+    .progress-track {
+      height: 14px; background: var(--blue-l); border-radius: 7px; overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%; border-radius: 7px;
+      background: linear-gradient(90deg, var(--blue) 0%, #4ec9b0 100%);
+      transition: width 1s ease;
+    }
+
+    /* CHART WRAP */
+    .chart-wrap { position: relative; height: 260px; }
+    .charts-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+    .chart-card {
+      background: var(--bg); border: 1px solid var(--border);
+      border-radius: 8px; padding: 1.1rem 1.4rem;
+    }
+    .chart-card h3 { font-size: 0.85rem; font-weight: 600; color: var(--text); margin-bottom: 0.2rem; }
+    .chart-card .sub { font-size: 0.73rem; color: var(--muted); margin-bottom: 0.9rem; }
+
+    /* TABLE */
+    .tbl-wrap { overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; font-size: 0.84rem; }
+    thead th {
+      background: var(--navy); color: #fff; font-weight: 600;
+      padding: 0.65rem 0.9rem; text-align: center; white-space: nowrap;
+    }
+    tbody tr:nth-child(odd)  { background: var(--bg); }
+    tbody tr:nth-child(even) { background: var(--blue-l); }
+    tbody td { padding: 0.55rem 0.9rem; text-align: center; color: var(--text); }
+    tbody td.money { color: var(--navy); font-weight: 600; }
+    tbody td.inc   { color: #c55a11; }
+    tbody td.pct   { background: var(--yellow); color: var(--text); }
+    tfoot td {
+      background: var(--navy); color: #fff; font-weight: 700;
+      padding: 0.65rem 0.9rem; text-align: center;
+    }
+
+    /* VBA BADGE */
+    .vba-badge {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: var(--green-l); border: 1px solid #a9d18e;
+      border-radius: 6px; padding: 0.6rem 1rem;
+      font-size: 0.82rem; color: var(--green); font-weight: 600;
+    }
+
+    /* YEAR BARS */
+    .year-row {
+      display: flex; flex-direction: column; gap: 0.6rem;
+    }
+    .yr-item {
+      display: grid; grid-template-columns: 60px 1fr 130px;
+      align-items: center; gap: 0.8rem;
+    }
+    .yr-label { font-size: 0.8rem; font-weight: 600; color: var(--navy); }
+    .yr-track { height: 22px; background: var(--blue-l); border-radius: 4px; overflow: hidden; }
+    .yr-fill  { height: 100%; border-radius: 4px; background: var(--blue); transition: width 1.2s ease; display: flex; align-items: center; padding-left: 8px; }
+    .yr-fill span { font-size: 0.7rem; color: #fff; font-weight: 600; white-space: nowrap; }
+    .yr-saldo { font-size: 0.78rem; color: var(--muted); text-align: right; }
+
+    @media (max-width: 680px) {
+      .kpi-grid { grid-template-columns: 1fr 1fr; }
+      .charts-2col { grid-template-columns: 1fr; }
+      .content { padding: 1.5rem; }
+      .tabs-bar { overflow-x: auto; }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <a href="index.html" class="back-link">← Volver a la Hoja de Vida</a>
+
+  <div class="proj-header">
+    <span class="tag">Excel · VBA · Gestión Financiera · 2025</span>
+    <h1>Plan de Gestión de Dinero</h1>
+    <p>Modelo financiero en Excel con macros VBA para registrar, proyectar y hacer seguimiento a un préstamo de $17.964.013 COP — cuota mensual de $300.000.</p>
+  </div>
+
+  <div class="tabs-bar">
+    <div class="tab active" onclick="showTab('resumen')">Panel General</div>
+    <div class="tab" onclick="showTab('inversiones')">Registro de Inversiones</div>
+    <div class="tab" onclick="showTab('cobro')">Plan de Cobro</div>
+    <div class="tab" onclick="showTab('anual')">Resumen Anual</div>
+  </div>
+
+  <div class="content">
+
+    <!-- ══ PANEL GENERAL ══ -->
+    <div class="panel active" id="panel-resumen">
+
+      <div>
+        <div class="sec-title">Resumen ejecutivo</div>
+        <div class="kpi-grid">
+          <div class="kpi">
+            <div class="kpi-num">$17.027.500</div>
+            <div class="kpi-label">Total invertido (COP)</div>
+          </div>
+          <div class="kpi green">
+            <div class="kpi-num">$17.964.013</div>
+            <div class="kpi-label">Valor actualizado con 5,5% interés</div>
+          </div>
+          <div class="kpi">
+            <div class="kpi-num">$300.000</div>
+            <div class="kpi-label">Cuota mensual de cobro</div>
+          </div>
+          <div class="kpi">
+            <div class="kpi-num">~60 meses</div>
+            <div class="kpi-label">Plazo total de recuperación</div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="sec-title">Progreso de recuperación (Año 1)</div>
+        <div class="progress-wrap">
+          <div class="progress-label">
+            <span>Pagado Año 1: $3.600.000</span>
+            <span>20,0% del total</span>
+          </div>
+          <div class="progress-track">
+            <div class="progress-fill" style="width: 20%"></div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="sec-title">Recuperación anual proyectada</div>
+        <div class="year-row" id="yearBars"></div>
+      </div>
+
+      <div>
+        <div class="sec-title">Funcionalidades VBA incluidas</div>
+        <div style="display:flex; flex-wrap:wrap; gap:0.6rem;">
+          <div class="vba-badge">✓ Cálculo automático de interés compuesto</div>
+          <div class="vba-badge">✓ Generación del plan de cobro mensual</div>
+          <div class="vba-badge">✓ Actualización dinámica del saldo restante</div>
+          <div class="vba-badge">✓ Resumen anual con totales acumulados</div>
+          <div class="vba-badge">✓ Alerta de cuota mensual programada</div>
+        </div>
+      </div>
+
+      <div class="charts-2col">
+        <div class="chart-card">
+          <h3>Saldo restante por año</h3>
+          <div class="sub">Reducción de la deuda con pagos de $300.000/mes</div>
+          <div class="chart-wrap"><canvas id="chartSaldo"></canvas></div>
+        </div>
+        <div class="chart-card">
+          <h3>Distribución de inversiones</h3>
+          <div class="sub">14 transacciones — Mar a Jun 2025</div>
+          <div class="chart-wrap"><canvas id="chartInvDist"></canvas></div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ══ REGISTRO DE INVERSIONES ══ -->
+    <div class="panel" id="panel-inversiones">
+
+      <div>
+        <div class="sec-title">14 transacciones registradas</div>
+        <div class="tbl-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>#</th><th>Fecha</th>
+                <th>Valor Invertido (COP)</th>
+                <th>Valor Actualizado 2026 (COP)</th>
+                <th>Incremento (COP)</th>
+                <th>Incremento (%)</th>
+              </tr>
+            </thead>
+            <tbody id="invTable"></tbody>
+            <tfoot>
+              <tr>
+                <td colspan="2">TOTAL INVERTIDO</td>
+                <td>$17.027.500</td>
+                <td>$17.964.013</td>
+                <td>$936.513</td>
+                <td>5,5%</td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+      </div>
+
+      <div class="chart-card">
+        <h3>Valor invertido por transacción</h3>
+        <div class="sub">Valor original vs valor actualizado al 5,5%</div>
+        <div class="chart-wrap" style="height:300px"><canvas id="chartInvBar"></canvas></div>
+      </div>
+
+    </div>
+
+    <!-- ══ PLAN DE COBRO ══ -->
+    <div class="panel" id="panel-cobro">
+
+      <div>
+        <div class="sec-title">Amortización mensual — $300.000/mes</div>
+        <div class="tbl-wrap" style="max-height:420px; overflow-y:auto;">
+          <table>
+            <thead>
+              <tr>
+                <th>Cuota</th><th>Período</th>
+                <th>Cuota ($)</th><th>Acumulado ($)</th><th>Saldo restante ($)</th>
+              </tr>
+            </thead>
+            <tbody id="cobroTable"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="chart-card">
+        <h3>Evolución del saldo de la deuda</h3>
+        <div class="sub">Saldo mensual restante durante los 60 meses de pago</div>
+        <div class="chart-wrap" style="height:260px"><canvas id="chartLinea"></canvas></div>
+      </div>
+
+    </div>
+
+    <!-- ══ RESUMEN ANUAL ══ -->
+    <div class="panel" id="panel-anual">
+
+      <div>
+        <div class="sec-title">Seguimiento año a año</div>
+        <div class="tbl-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Año</th><th>Período</th><th>Cuotas</th>
+                <th>Pagado en el año ($)</th>
+                <th>Acumulado pagado ($)</th>
+                <th>Saldo restante ($)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td class="money">Año 1</td><td>Abr 2026 – Mar 2027</td><td>12</td><td>$3.600.000</td><td class="inc">$3.600.000</td><td>$14.364.013</td></tr>
+              <tr><td class="money">Año 2</td><td>Abr 2027 – Mar 2028</td><td>12</td><td>$3.600.000</td><td class="inc">$7.200.000</td><td>$10.764.013</td></tr>
+              <tr><td class="money">Año 3</td><td>Abr 2028 – Mar 2029</td><td>12</td><td>$3.600.000</td><td class="inc">$10.800.000</td><td>$7.164.013</td></tr>
+              <tr><td class="money">Año 4</td><td>Abr 2029 – Mar 2030</td><td>12</td><td>$3.600.000</td><td class="inc">$14.400.000</td><td>$3.564.013</td></tr>
+              <tr><td class="money">Año 5</td><td>Abr 2030 – Mar 2031</td><td>12</td><td>$3.564.013</td><td class="inc">$17.964.013</td><td style="color:var(--green);font-weight:700">$0</td></tr>
+            </tbody>
+            <tfoot>
+              <tr><td colspan="3">TOTAL RECUPERADO</td><td>$17.964.013</td><td>$17.964.013</td><td>$0</td></tr>
+            </tfoot>
+          </table>
+        </div>
+      </div>
+
+      <div class="charts-2col">
+        <div class="chart-card">
+          <h3>Pagado vs saldo por año</h3>
+          <div class="sub">Evolución del pago acumulado y deuda restante</div>
+          <div class="chart-wrap"><canvas id="chartAnualBar"></canvas></div>
+        </div>
+        <div class="chart-card">
+          <h3>Pago anual como % del total</h3>
+          <div class="sub">Participación de cada año en la recuperación</div>
+          <div class="chart-wrap"><canvas id="chartAnualPie"></canvas></div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+<script>
+  /* ── DATA ── */
+  const inversiones = [
+    { n:1,  fecha:'14/03/2025', orig:2290500,  act:2416478  },
+    { n:2,  fecha:'14/03/2025', orig:27000,    act:28485    },
+    { n:3,  fecha:'14/03/2025', orig:2280000,  act:2405400  },
+    { n:4,  fecha:'17/03/2025', orig:930000,   act:981150   },
+    { n:5,  fecha:'24/03/2025', orig:75000,    act:79125    },
+    { n:6,  fecha:'15/04/2025', orig:1200000,  act:1266000  },
+    { n:7,  fecha:'19/04/2025', orig:2600000,  act:2743000  },
+    { n:8,  fecha:'23/04/2025', orig:2249000,  act:2372695  },
+    { n:9,  fecha:'23/04/2025', orig:27000,    act:28485    },
+    { n:10, fecha:'23/05/2025', orig:1875000,  act:1978125  },
+    { n:11, fecha:'03/06/2025', orig:25000,    act:26375    },
+    { n:12, fecha:'06/06/2025', orig:1189000,  act:1254395  },
+    { n:13, fecha:'06/06/2025', orig:35000,    act:36925    },
+    { n:14, fecha:'18/06/2025', orig:2225000,  act:2347375  },
+  ];
+
+  const cop = n => '$' + Math.round(n).toLocaleString('es-CO');
+  const NAVY  = '#1f4e79';
+  const BLUE  = '#2e75b6';
+  const GREEN = '#4ec9b0';
+  const MUTED = '#5a6e82';
+  const BG    = '#f5f8fb';
+
+  /* ── TABS ── */
+  function showTab(id) {
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+    event.target.classList.add('active');
+    document.getElementById('panel-' + id).classList.add('active');
+  }
+
+  /* ── YEAR BARS ── */
+  const years = [
+    { lbl:'Año 1', pagado:3600000,  acum:3600000,  saldo:14364013 },
+    { lbl:'Año 2', pagado:3600000,  acum:7200000,  saldo:10764013 },
+    { lbl:'Año 3', pagado:3600000,  acum:10800000, saldo:7164013  },
+    { lbl:'Año 4', pagado:3600000,  acum:14400000, saldo:3564013  },
+    { lbl:'Año 5', pagado:3564013,  acum:17964013, saldo:0        },
+  ];
+  const total = 17964013;
+  const container = document.getElementById('yearBars');
+  years.forEach(y => {
+    const pct = Math.round((y.acum / total) * 100);
+    container.innerHTML += `
+      <div class="yr-item">
+        <div class="yr-label">${y.lbl}</div>
+        <div class="yr-track">
+          <div class="yr-fill" style="width:${pct}%">
+            <span>${pct}%</span>
+          </div>
+        </div>
+        <div class="yr-saldo">Saldo: ${cop(y.saldo)}</div>
+      </div>`;
+  });
+
+  /* ── INVERSIONES TABLE ── */
+  const tbody = document.getElementById('invTable');
+  inversiones.forEach((r, i) => {
+    const inc = r.act - r.orig;
+    tbody.innerHTML += `<tr>
+      <td>${r.n}</td><td>${r.fecha}</td>
+      <td class="money">${cop(r.orig)}</td>
+      <td class="money">${cop(r.act)}</td>
+      <td class="inc">${cop(inc)}</td>
+      <td class="pct">5,5%</td>
+    </tr>`;
+  });
+
+  /* ── COBRO TABLE ── */
+  const cobroTbody = document.getElementById('cobroTable');
+  let saldo = 17964013, acum = 0;
+  const startDate = new Date(2026, 3, 1); // April 2026
+  for (let i = 1; saldo > 0; i++) {
+    const cuota = Math.min(300000, saldo);
+    acum += cuota;
+    saldo -= cuota;
+    const d = new Date(startDate);
+    d.setMonth(d.getMonth() + i - 1);
+    const mes = d.toLocaleDateString('es-CO', { month: 'short', year: 'numeric' });
+    const rowClass = saldo === 0 ? 'style="background:var(--green-l)"' : '';
+    cobroTbody.innerHTML += `<tr ${rowClass}>
+      <td>${i}</td><td>${mes}</td>
+      <td>${cop(cuota)}</td><td>${cop(acum)}</td>
+      <td class="${saldo===0?'money':''}">${cop(saldo)}</td>
+    </tr>`;
+  }
+
+  /* ── CHARTS ── */
+  const chartDefaults = {
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { labels: { font: { family:'DM Sans', size:11 }, color: MUTED } } }
+  };
+
+  // Saldo restante por año (line)
+  new Chart(document.getElementById('chartSaldo'), {
+    type: 'line',
+    data: {
+      labels: ['Inicio','Año 1','Año 2','Año 3','Año 4','Año 5'],
+      datasets: [{
+        label: 'Saldo restante',
+        data: [17964013, 14364013, 10764013, 7164013, 3564013, 0],
+        borderColor: NAVY, backgroundColor: 'rgba(31,78,121,0.1)',
+        fill: true, tension: 0.3, pointRadius: 5, pointBackgroundColor: NAVY,
+      }]
+    },
+    options: {
+      ...chartDefaults,
+      scales: {
+        y: { ticks: { callback: v => '$' + (v/1000000).toFixed(1) + 'M', color: MUTED, font:{family:'DM Sans'} }, grid: { color:'#e8eef4' } },
+        x: { ticks: { color: MUTED, font:{family:'DM Sans'} }, grid: { display:false } }
+      },
+      plugins: { ...chartDefaults.plugins, legend: { display:false } }
+    }
+  });
+
+  // Distribución inversiones (doughnut)
+  new Chart(document.getElementById('chartInvDist'), {
+    type: 'doughnut',
+    data: {
+      labels: inversiones.map(r => `#${r.n}`),
+      datasets: [{
+        data: inversiones.map(r => r.orig),
+        backgroundColor: [
+          '#1f4e79','#2e75b6','#4472c4','#5b9bd5','#9dc3e6',
+          '#375623','#70ad47','#a9d18e','#c55a11','#f4b183',
+          '#7030a0','#c00000','#ff0000','#ffc000'
+        ],
+        borderWidth: 2, borderColor: BG,
+      }]
+    },
+    options: {
+      ...chartDefaults, cutout: '55%',
+      plugins: { legend: { display:false } }
+    }
+  });
+
+  // Inversiones barras (grouped)
+  new Chart(document.getElementById('chartInvBar'), {
+    type: 'bar',
+    data: {
+      labels: inversiones.map(r => `#${r.n}`),
+      datasets: [
+        { label: 'Valor original',    data: inversiones.map(r => r.orig), backgroundColor: BLUE, borderRadius: 3 },
+        { label: 'Valor actualizado', data: inversiones.map(r => r.act),  backgroundColor: GREEN, borderRadius: 3 },
+      ]
+    },
+    options: {
+      ...chartDefaults,
+      scales: {
+        y: { ticks: { callback: v => '$' + (v/1000).toFixed(0) + 'K', color:MUTED, font:{family:'DM Sans'} }, grid:{color:'#e8eef4'} },
+        x: { ticks: { color:MUTED, font:{family:'DM Sans'} }, grid:{display:false} }
+      }
+    }
+  });
+
+  // Línea mensual saldo
+  const monthLabels = [], monthSaldos = [];
+  let s2 = 17964013;
+  for (let i = 0; i <= 60 && s2 >= 0; i++) {
+    const d = new Date(2026, 3 + i, 1);
+    monthLabels.push(d.toLocaleDateString('es-CO', { month:'short', year:'2-digit' }));
+    monthSaldos.push(s2);
+    s2 = Math.max(0, s2 - 300000);
+  }
+  new Chart(document.getElementById('chartLinea'), {
+    type: 'line',
+    data: {
+      labels: monthLabels,
+      datasets: [{ label:'Saldo', data: monthSaldos,
+        borderColor: BLUE, backgroundColor:'rgba(46,117,182,0.1)',
+        fill:true, tension:0.1, pointRadius:0, borderWidth:2 }]
+    },
+    options: {
+      ...chartDefaults,
+      scales: {
+        y: { ticks:{ callback: v => '$'+(v/1000000).toFixed(1)+'M', color:MUTED, font:{family:'DM Sans'} }, grid:{color:'#e8eef4'} },
+        x: { ticks:{ color:MUTED, font:{family:'DM Sans'}, maxTicksLimit:10 }, grid:{display:false} }
+      },
+      plugins: { ...chartDefaults.plugins, legend:{display:false} }
+    }
+  });
+
+  // Anual barras apiladas
+  new Chart(document.getElementById('chartAnualBar'), {
+    type: 'bar',
+    data: {
+      labels: ['Año 1','Año 2','Año 3','Año 4','Año 5'],
+      datasets: [
+        { label:'Acumulado pagado', data:[3600000,7200000,10800000,14400000,17964013], backgroundColor:BLUE, borderRadius:3 },
+        { label:'Saldo restante',   data:[14364013,10764013,7164013,3564013,0],        backgroundColor:'#dbe5f1', borderRadius:3 },
+      ]
+    },
+    options: {
+      ...chartDefaults,
+      scales: {
+        x: { stacked:true, ticks:{color:MUTED, font:{family:'DM Sans'}}, grid:{display:false} },
+        y: { stacked:true, ticks:{ callback:v=>'$'+(v/1000000).toFixed(1)+'M', color:MUTED, font:{family:'DM Sans'} }, grid:{color:'#e8eef4'} }
+      }
+    }
+  });
+
+  // Anual pie
+  new Chart(document.getElementById('chartAnualPie'), {
+    type: 'pie',
+    data: {
+      labels: ['Año 1','Año 2','Año 3','Año 4','Año 5'],
+      datasets: [{
+        data: [3600000,3600000,3600000,3600000,3564013],
+        backgroundColor: ['#1f4e79','#2e75b6','#4472c4','#5b9bd5','#9dc3e6'],
+        borderWidth:2, borderColor:BG,
+      }]
+    },
+    options: { ...chartDefaults }
+  });
+</script>
+</body>
+</html>

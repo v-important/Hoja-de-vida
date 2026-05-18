@@ -1,0 +1,24 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<link href="../colors_and_type.css" rel="stylesheet">
+<style>
+  body{margin:0;padding:20px;background:var(--bg)}
+  .grid{display:grid;grid-template-columns:repeat(8,1fr);gap:6px}
+  .sw{height:78px;border-radius:var(--radius-2);position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;padding:8px;border:1px solid var(--border-subtle)}
+  .sw .name{font:600 10px/1 var(--font-sans)}
+  .sw .hex{font:500 9px/1 var(--font-mono);margin-top:3px;opacity:.7}
+  .dark{color:#f5f5f7}
+  .light{color:#050506}
+</style></head>
+<body class="lt">
+  <div class="grid">
+    <div class="sw dark" style="background:#050506"><span class="name">bg</span><span class="hex">#050506</span></div>
+    <div class="sw dark" style="background:#0e0e11"><span class="name">surface</span><span class="hex">#0E0E11</span></div>
+    <div class="sw dark" style="background:#15151a"><span class="name">surface-2</span><span class="hex">#15151A</span></div>
+    <div class="sw dark" style="background:#1d1d23"><span class="name">surface-3</span><span class="hex">#1D1D23</span></div>
+    <div class="sw dark" style="background:#26262e"><span class="name">border</span><span class="hex">#26262E</span></div>
+    <div class="sw dark" style="background:#3a3a44"><span class="name">border-strong</span><span class="hex">#3A3A44</span></div>
+    <div class="sw dark" style="background:#71717a"><span class="name">fg-3</span><span class="hex">#71717A</span></div>
+    <div class="sw dark" style="background:#b8b8c0"><span class="name light">fg-2</span><span class="hex light">#B8B8C0</span></div>
+  </div>
+</body></html>

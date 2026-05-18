@@ -1,0 +1,42 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python -c ':*)",
+      "Bash(py --version)",
+      "Bash(where python3:*)",
+      "Bash(where py:*)",
+      "Bash(py -3 -c \"import pdfplumber; print\\('ok'\\)\")",
+      "Bash(python3 -c \"import pdfplumber; print\\('ok'\\)\")",
+      "Bash(python3 -c ':*)",
+      "Bash(py -3 -c ':*)",
+      "Bash(where python:*)",
+      "Read(//c/Users/mende/AppData/Local/Programs/Python\" 2>/**)",
+      "Read(//mnt/c/Users/mende/AppData/Local/Programs/**)",
+      "Read(//c/Users/mende/AppData/Local/Programs/**)",
+      "Read(//mnt/c/Users/**)",
+      "Bash(cmd.exe /c \"where python\")",
+      "Bash(cmd.exe /c \"python --version\")",
+      "Bash(cmd.exe /c \"python -c \\\\\"import pandas as pd; xl = pd.read_excel\\('Plan Gestion Dinero.xlsx', sheet_name=None\\); [print\\(n, df.to_string\\(\\)\\) for n,df in xl.items\\(\\)]\\\\\" 2>&1\")",
+      "Bash(python3)",
+      "Bash(python3 -c \"import openpyxl; print\\(openpyxl.__version__\\)\")",
+      "Bash(cd /tmp)",
+      "Bash(python)",
+      "Bash(pip install:*)",
+      "Bash(pip3 install:*)",
+      "Bash(python -m pip install openpyxl pandas -q)",
+      "mcp__Claude_in_Chrome__tabs_context_mcp",
+      "Bash(cmd.exe /c \"powershell -command \\\\\"Get-Command chrome,msedge,chromium -ErrorAction SilentlyContinue | Select-Object Name,Source\\\\\"\")",
+      "Bash(cmd.exe /c \"dir \\\\\"C:\\\\\\\\Program Files\\\\\\\\\\\\\" /b 2>nul\")",
+      "Bash(cmd.exe /c \"dir \\\\\"C:\\\\\\\\Program Files \\(x86\\)\\\\\\\\\\\\\" /b 2>nul\")",
+      "Bash(cmd.exe /c \"powershell \\\\\"ls 'C:\\\\\\\\Program Files' | Select Name\\\\\"\")",
+      "Bash(cmd.exe /c \"where msedge.exe 2>nul || where chrome.exe 2>nul || reg query \\\\\"HKLM\\\\\\\\SOFTWARE\\\\\\\\Microsoft\\\\\\\\Windows\\\\\\\\CurrentVersion\\\\\\\\App Paths\\\\\\\\msedge.exe\\\\\" 2>nul || reg query \\\\\"HKLM\\\\\\\\SOFTWARE\\\\\\\\Microsoft\\\\\\\\Windows\\\\\\\\CurrentVersion\\\\\\\\App Paths\\\\\\\\chrome.exe\\\\\" 2>nul\")",
+      "Bash(cmd.exe /c \"powershell -NoProfile -Command \\\\\"\\(Get-Item 'HKLM:\\\\\\\\SOFTWARE\\\\\\\\Microsoft\\\\\\\\Windows\\\\\\\\CurrentVersion\\\\\\\\App Paths\\\\\\\\msedge.exe' -ErrorAction SilentlyContinue\\).'\\(default\\)'; \\(Get-Item 'HKLM:\\\\\\\\SOFTWARE\\\\\\\\Microsoft\\\\\\\\Windows\\\\\\\\CurrentVersion\\\\\\\\App Paths\\\\\\\\chrome.exe' -ErrorAction SilentlyContinue\\).'\\(default\\)'\\\\\"\")",
+      "Bash(cmd.exe /c \"powershell -NoProfile -Command \\\\\"Get-ChildItem 'C:\\\\\\\\' -Filter 'msedge.exe' -Recurse -ErrorAction SilentlyContinue -Force | Select-Object -First 3 FullName\\\\\"\")",
+      "Bash(python -c \"import reportlab; print\\(reportlab.Version\\)\")",
+      "Bash(python -m pip install reportlab)",
+      "Bash(python generar_hv.py)",
+      "Bash(python -c ' *)",
+      "Bash(python -m pip install pypdf)"
+    ]
+  }
+}

@@ -1,0 +1,26 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="../colors_and_type.css" rel="stylesheet">
+<style>
+  body{margin:0;padding:24px;background:var(--bg);display:flex;flex-direction:column;gap:14px}
+  .row{display:flex;gap:14px;align-items:center}
+  label{font:600 11px/1 var(--font-sans);letter-spacing:.12em;text-transform:uppercase;color:var(--fg-3)}
+  input,select{font:400 14px/1 var(--font-sans);background:var(--surface);color:var(--fg);border:1px solid var(--border);border-radius:var(--radius-2);padding:0 14px;height:44px;outline:none;width:240px;transition:all .22s var(--ease-out)}
+  input:focus,select:focus{border-color:var(--brand-red);box-shadow:0 0 0 3px rgb(239 43 43 / .15)}
+  input::placeholder{color:var(--fg-3)}
+  .field{display:flex;flex-direction:column;gap:6px}
+  .err{color:var(--brand-red);font:500 12px/1 var(--font-sans)}
+  .ok{color:var(--success);font:500 12px/1 var(--font-sans)}
+  .err-input{border-color:var(--brand-red);box-shadow:0 0 0 3px rgb(239 43 43 / .15)}
+</style></head>
+<body class="lt">
+  <div class="row">
+    <div class="field"><label>Email</label><input placeholder="andres@gmail.com"/></div>
+    <div class="field"><label>Cantidad</label><input value="2" style="width:80px;text-align:center" class="lt-mono"/></div>
+    <div class="field"><label>Tamaño</label><select><option>Mediano</option></select></div>
+  </div>
+  <div class="row">
+    <div class="field"><label>Cupón</label><input class="err-input" value="GAMER10X"/><span class="err">Cupón expirado</span></div>
+    <div class="field"><label>Tarjeta</label><input value="4242 4242 4242 4242" class="lt-mono"/><span class="ok">✓ Tarjeta válida</span></div>
+  </div>
+</body></html>

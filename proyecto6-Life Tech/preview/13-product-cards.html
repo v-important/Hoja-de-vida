@@ -1,0 +1,33 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<link href="../colors_and_type.css" rel="stylesheet">
+<style>
+  body{margin:0;padding:18px;background:var(--bg);display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+  .card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-3);padding:14px;display:flex;flex-direction:column;gap:8px;position:relative;overflow:hidden}
+  .card.featured{border-color:var(--brand-red);box-shadow:var(--shadow-glow-red)}
+  .img{height:96px;border-radius:8px;background:radial-gradient(circle at 50% 60%,#2a0d10 0%,#0e0e11 70%);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+  .img::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 50%,rgb(239 43 43 / .25) 0%,transparent 60%)}
+  .glyph{font:900 40px/1 var(--font-display);color:#26262e;letter-spacing:-.04em;position:relative;z-index:1}
+  .name{font:700 14px/1.2 var(--font-sans);color:var(--fg);letter-spacing:-.01em}
+  .desc{font:400 12px/1.4 var(--font-sans);color:var(--fg-3)}
+  .bot{display:flex;align-items:center;justify-content:space-between;margin-top:auto}
+  .price{font:700 16px/1 var(--font-sans);color:var(--fg)}
+  .price s{color:var(--fg-3);font-weight:400;font-size:12px;margin-right:4px}
+  .add{font:600 11px/1 var(--font-sans);background:var(--brand-red);color:#fff;border:0;border-radius:999px;height:28px;padding:0 12px;cursor:pointer}
+  .corner{position:absolute;top:10px;left:10px;font:600 10px/1 var(--font-sans);letter-spacing:.04em;background:var(--brand-red);color:#fff;padding:4px 8px;border-radius:999px}
+</style></head>
+<body class="lt">
+  <div class="card featured">
+    <div class="img"><span class="glyph">⌘</span></div>
+    <span class="corner">−30%</span>
+    <div class="name">Teclado RX-91 Pro</div>
+    <div class="desc">Switches lineales · Hot-swap · RGB por tecla</div>
+    <div class="bot"><span class="price"><s>$1,899</s>$1,329</span><button class="add">Añadir</button></div>
+  </div>
+  <div class="card">
+    <div class="img"><span class="glyph">◉</span></div>
+    <div class="name">Mouse Vortex 8K</div>
+    <div class="desc">Sensor 26K DPI · 1ms · Inalámbrico</div>
+    <div class="bot"><span class="price">$1,099</span><button class="add">Añadir</button></div>
+  </div>
+</body></html>

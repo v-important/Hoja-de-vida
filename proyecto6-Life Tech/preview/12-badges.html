@@ -1,0 +1,238 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link href="../colors_and_type.css" rel="stylesheet">
+<style>
+  body{margin:0;padding:24px;background:var(--bg);display:flex;flex-direction:column;gap:18px}
+
+  /* In-context demo card — shows badges as they appear on a real product */
+  .demo{
+    position: relative;
+    border:1px solid var(--border);
+    border-radius: 14px;
+    background:
+      radial-gradient(circle at 80% 0%, rgb(239 43 43 / .14), transparent 55%),
+      radial-gradient(circle at 0% 100%, rgb(168 85 247 / .12), transparent 50%),
+      var(--surface);
+    padding: 18px 20px;
+    display:flex;
+    align-items:center;
+    gap:18px;
+    overflow:hidden;
+  }
+  .demo::before{
+    content:""; position:absolute; inset:0;
+    background-image:
+      linear-gradient(rgb(255 255 255 / .015) 1px, transparent 1px),
+      linear-gradient(90deg, rgb(255 255 255 / .015) 1px, transparent 1px);
+    background-size: 24px 24px;
+    pointer-events:none;
+  }
+  .demo-thumb{
+    width:64px; height:64px; flex:none;
+    border-radius:10px;
+    background:
+      radial-gradient(circle at 30% 30%, #2a0d10, #050506 70%),
+      #050506;
+    border:1px solid var(--border);
+    display:grid; place-items:center;
+    color: var(--brand-red);
+    box-shadow: inset 0 0 24px rgb(239 43 43 / .25);
+    z-index:1;
+  }
+  .demo-meta{ z-index:1; min-width:0; flex:1 }
+  .demo-title{ font: 700 15px/1.2 var(--font-sans); letter-spacing:-.01em; color:var(--fg) }
+  .demo-sub{ font: 500 12px/1 var(--font-mono); color: var(--fg-3); margin-top:6px }
+  .demo-badges{ display:flex; gap:6px; margin-top:10px; flex-wrap:wrap }
+
+  .row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+  .lab{
+    font: 700 9px/1 var(--font-sans); letter-spacing:.18em; text-transform:uppercase;
+    color: var(--fg-4); width: 80px; flex: none;
+  }
+
+  /* ============ THE BADGE FAMILY ============ */
+  .b{
+    font: 700 11px/1 var(--font-sans);
+    letter-spacing: .04em;
+    height: 26px;
+    padding: 0 10px;
+    border-radius: 999px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    border: 1px solid transparent;
+    white-space: nowrap;
+    position: relative;
+  }
+  .b svg{ width:12px; height:12px; flex:none }
+  .b .num{ font-family: var(--font-mono); font-weight: 800; letter-spacing: -.03em; font-size: 12px }
+
+  /* RED — promo / nuevo / urgent */
+  .b.red-solid {
+    background: linear-gradient(180deg, #ff3b3b, #d91a1a);
+    color:#fff;
+    box-shadow:
+      0 0 0 1px rgb(255 60 60 / .35) inset,
+      0 8px 16px -8px rgb(239 43 43 / .8),
+      0 0 18px -4px rgb(239 43 43 / .6);
+  }
+  .b.red-tint  { background: rgb(239 43 43 / .12); color: #ff6262; border-color: rgb(239 43 43 / .40) }
+  .b.red-line  { background: transparent; color: #ff6262; border-color: rgb(239 43 43 / .60) }
+
+  /* YELLOW — live / disponibilidad / hot */
+  .b.yel-tint  { background: rgb(255 230 0 / .10); color: #ffe600; border-color: rgb(255 230 0 / .42) }
+  .b.yel-solid {
+    background: linear-gradient(180deg, #fff14d, #ffe600);
+    color:#1a1500;
+    box-shadow:
+      0 0 0 1px rgb(255 240 70 / .5) inset,
+      0 6px 14px -6px rgb(255 230 0 / .55);
+  }
+
+  /* VIOLET — IA / smart / premium */
+  .b.vio-tint  { background: rgb(168 85 247 / .12); color: #c89bff; border-color: rgb(168 85 247 / .42) }
+  .b.vio-line  { background: transparent; color: #c89bff; border-color: rgb(168 85 247 / .60) }
+  .b.vio-solid {
+    background: linear-gradient(180deg, #b975ff, #8b3df0);
+    color:#0d0418;
+    box-shadow:
+      0 0 0 1px rgb(200 155 255 / .45) inset,
+      0 8px 18px -8px rgb(168 85 247 / .65);
+  }
+
+  /* NEUTRAL — tags / filters / muted */
+  .b.neu     { background: var(--surface-2); color: var(--fg-2); border-color: var(--border) }
+  .b.neu-mut { background: var(--surface); color: var(--fg-3); border-color: var(--border-subtle) }
+
+  /* RGB — gradient bar that literally is the brand palette */
+  .b.rgb {
+    background: linear-gradient(90deg, #ef2b2b 0%, #ffe600 50%, #a855f7 100%);
+    color: #050506;
+    font-weight: 900;
+    border: 0;
+    box-shadow:
+      0 0 0 1px rgb(255 255 255 / .15) inset,
+      0 8px 18px -8px rgb(168 85 247 / .4);
+  }
+
+  /* RIBBON — corner notch shape, used for "exclusive" type promos */
+  .b.ribbon{
+    border-radius: 4px 4px 4px 0;
+    height: 24px;
+    padding: 0 9px 0 12px;
+    background: var(--brand-red);
+    color: #fff;
+    font-weight: 800;
+    box-shadow: 0 6px 14px -8px rgb(239 43 43 / .8);
+  }
+  .b.ribbon::after{
+    content:""; position:absolute;
+    left:0; bottom:-5px;
+    border: 5px solid transparent;
+    border-top-color: var(--brand-red-press);
+    border-right: 0;
+    filter: brightness(.6);
+  }
+
+  /* SQUARE TILE — for category / version chips */
+  .b.tile{
+    border-radius: 5px;
+    height: 22px;
+    padding: 0 7px;
+    font-size: 10px;
+    background: var(--surface-2);
+    color: var(--fg-2);
+    border: 1px solid var(--border);
+    font-family: var(--font-mono);
+    letter-spacing: 0;
+  }
+  .b.tile.hot{ color: var(--neon-yellow); border-color: rgb(255 230 0 / .35); background: rgb(255 230 0 / .06) }
+
+  /* Live dot — yellow now */
+  .ld{
+    width:7px; height:7px; border-radius:999px; background: var(--neon-yellow);
+    box-shadow: 0 0 0 3px rgb(255 230 0 / .22);
+    animation: lt-pulse 1.4s ease-in-out infinite;
+    flex:none;
+  }
+  /* Bolt micro animation on AI badge */
+  .bolt{ animation: lt-bolt 2.6s ease-in-out infinite }
+  @keyframes lt-bolt{
+    0%, 88%, 100% { transform: translateY(0); filter: drop-shadow(0 0 0 transparent) }
+    92%           { transform: translateY(-1px); filter: drop-shadow(0 0 4px #c89bff) }
+    96%           { transform: translateY(0);    filter: drop-shadow(0 0 0 transparent) }
+  }
+</style></head>
+<body class="lt">
+
+  <!-- In-context: how badges look on a real product card -->
+  <div class="demo">
+    <div class="demo-thumb">
+      <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="2" y="6" width="20" height="12" rx="2"/>
+        <path d="M6 10h.01M10 10h.01M14 10h.01M18 10h.01M7 14h10"/>
+      </svg>
+    </div>
+    <div class="demo-meta">
+      <div class="demo-title">Hyperion K-7 Mecánico Pro</div>
+      <div class="demo-sub">$2,499 MXN · Switch rojo</div>
+      <div class="demo-badges">
+        <span class="b red-solid">Nuevo</span>
+        <span class="b yel-tint"><span class="ld"></span>En stock</span>
+        <span class="b vio-tint">
+          <svg class="bolt" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+          IA optimizado
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <span class="lab">Estado</span>
+    <span class="b red-solid">Nuevo</span>
+    <span class="b yel-tint"><span class="ld"></span>En stock</span>
+    <span class="b red-tint"><span class="num">3</span> restantes</span>
+    <span class="b neu-mut">Agotado</span>
+    <span class="b vio-tint">Pre-orden</span>
+    <span class="b vio-line">Envío hoy</span>
+  </div>
+
+  <div class="row">
+    <span class="lab">Promo</span>
+    <span class="b ribbon"><span class="num">−30%</span></span>
+    <span class="b red-tint"><span class="num">2×1</span></span>
+    <span class="b yel-solid">Hot deal</span>
+    <span class="b red-line">Envío gratis</span>
+    <span class="b vio-solid">Edición limitada</span>
+  </div>
+
+  <div class="row">
+    <span class="lab">Feature</span>
+    <span class="b vio-tint">
+      <svg class="bolt" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+      IA optimizado
+    </span>
+    <span class="b vio-line">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><line x1="12" y1="20" x2="12" y2="20"/></svg>
+      Inalámbrico
+    </span>
+    <span class="b yel-tint">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+      RGB Sync
+    </span>
+    <span class="b rgb">RGB</span>
+  </div>
+
+  <div class="row">
+    <span class="lab">Specs</span>
+    <span class="b tile">DDR5</span>
+    <span class="b tile">USB-C</span>
+    <span class="b tile">Bluetooth 5.3</span>
+    <span class="b tile">PCIe 5.0</span>
+    <span class="b tile hot">144Hz</span>
+    <span class="b tile hot">1ms</span>
+  </div>
+
+</body></html>

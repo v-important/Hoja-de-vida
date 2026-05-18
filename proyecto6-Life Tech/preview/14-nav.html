@@ -1,0 +1,33 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+<link href="../colors_and_type.css" rel="stylesheet">
+<style>
+  body{margin:0;padding:0;background:var(--bg)}
+  .nav{display:flex;align-items:center;height:64px;padding:0 24px;border-bottom:1px solid var(--border);background:rgb(5 5 6 / .7);backdrop-filter:blur(12px);gap:32px}
+  .word{font:900 20px/1 var(--font-display);letter-spacing:-.04em;color:var(--fg);position:relative}
+  .word .dot{position:absolute;right:-6px;bottom:3px;width:5px;height:5px;border-radius:999px;background:var(--brand-red);box-shadow:0 0 8px 1px rgb(239 43 43 / .55)}
+  .links{display:flex;gap:24px;font:500 13px/1 var(--font-sans);color:var(--fg-2)}
+  .links a{color:var(--fg-2);cursor:pointer}
+  .links a.active{color:var(--fg)}
+  .right{margin-left:auto;display:flex;align-items:center;gap:12px}
+  .search{display:flex;align-items:center;gap:8px;height:36px;padding:0 12px;border:1px solid var(--border);border-radius:8px;background:var(--surface);color:var(--fg-3);font:400 13px/1 var(--font-sans);width:200px}
+  .icon-btn{width:36px;height:36px;border-radius:8px;background:var(--surface);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--fg-2);cursor:pointer;position:relative}
+  .icon-btn .count{position:absolute;top:-4px;right:-4px;background:var(--brand-red);color:#fff;font:700 9px/1 var(--font-sans);min-width:16px;height:16px;border-radius:999px;padding:0 4px;display:flex;align-items:center;justify-content:center}
+  svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round}
+</style></head>
+<body class="lt">
+  <nav class="nav">
+    <span class="word">LT<span class="dot"></span></span>
+    <div class="links">
+      <a class="active">Periféricos</a>
+      <a>Componentes</a>
+      <a>Setups</a>
+      <a>Ofertas</a>
+    </div>
+    <div class="right">
+      <div class="search"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>Buscar productos…</div>
+      <div class="icon-btn"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+      <div class="icon-btn"><svg viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg><span class="count">3</span></div>
+    </div>
+  </nav>
+</body></html>

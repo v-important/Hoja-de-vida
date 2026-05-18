@@ -1,0 +1,238 @@
+/* VARIABLES CSS (:root) - Referencia: W3Schools CSS Variables */
+:root {
+    --color-principal: #1a3a5f;    /* Azul  oscuro */
+    --color-secundario: #2a5298;   /* Azul medio */
+    --color-fondo: #f4f7f6;        /* Gris claro */
+    --color-texto: #333333;        /* Gris oscuro para contraste 4.5:1 */
+    --fuente-titulos: 'Montserrat', sans-serif;
+    --fuente-cuerpo: 'Open Sans', sans-serif;
+}
+
+/* RESET Y BASE - Referencia: W3Schools Box Model */
+* {
+    box-sizing: border-box;
+}
+
+body, header, footer {
+    background-color: var(--color-fondo);
+    color: var(--color-texto);
+    font-family: var(--fuente-cuerpo);
+    font-size: 1rem; /* Mínimo 16px para accesibilidad */
+    line-height: 1.6; /* Mejora de legibilidad según WCAG */
+    margin: 0;
+    padding: 0;
+}
+
+/* Alineación Global - Referencia: W3Schools CSS Max-width */
+header, footer, main {
+    max-width: 75rem;
+    margin: 0 auto;
+}
+
+/* HEADER - Logo al lado del H1 */
+.header-branding {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    padding: 2rem 0;
+}
+
+.header-branding img {
+    height: 4rem; /* Tamaño proporcional en rem */
+    width: auto;
+}
+
+header h1 {
+    margin: 0;
+}
+
+/* JERARQUÍA VISUAL */
+h1 {
+    font-family: var(--fuente-titulos);
+    font-size: 2.5rem;
+    color: var(--color-principal);
+}
+
+h2 {
+    font-family: var(--fuente-titulos);
+    font-size: 1.8rem;
+    border-left: 0.5rem solid var(--color-secundario);
+    padding-left: 1rem;
+}
+
+/* NAVEGACIÓN (BOTONES) - Referencia: W3Schools CSS Buttons */
+nav ul {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    padding: 0;
+    gap: 1rem;
+}
+
+nav a {
+    text-decoration: none;
+    color: white;
+    background-color: var(--color-principal);
+    padding: 0.7rem 1.2rem;
+    border-radius: 0.3rem;
+}
+
+nav a:hover {
+    background-color: var(--color-secundario);
+    transform: translateY(-0.2rem);
+}
+
+nav a:active {
+    transform: scale(0.95);
+}
+
+/* LAYOUT MODERNO - Referencia: W3Schools CSS Grid */
+main {
+    padding: 2rem;
+    display: grid;
+    grid-template-columns: 2fr 1fr; /* Main y Aside lado a lado */
+    gap: 3rem;
+}
+
+/* Centrado de secciones - Todas ocupan el ancho total por defecto */
+section, article {
+    grid-column: 1 / span 2;
+}
+
+/* CENTRADO DE IMAGEN Y FIGCAPTION */
+figure {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centra horizontalmente el contenido flex */
+    justify-content: center;
+    margin: 2rem auto;
+    width: 100%;
+}
+
+figure img {
+    max-width: 80%; /* Evita que sea gigante y ayuda al centrado visual */
+    height: auto;
+    border-radius: 0.5rem;
+    display: block;
+}
+
+figcaption {
+    text-align: center;
+    margin-top: 1rem;
+}
+
+/* Excepción: Tabla y Aside lado a lado */
+#tarifas {
+    grid-column: 1;
+}
+
+aside {
+    grid-column: 2;
+    grid-row: span 2; /* El aside ahora cubre la altura de la tabla + el mapa */
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.1);
+}
+
+#ubicacion {
+    grid-column: 1;
+    text-align: left;
+}
+
+#contacto {
+    grid-column: 1 / span 2; /* Formulario ocupa todo el ancho abajo */
+    text-align: center;
+}
+
+#contacto h2 {
+    border-left: none;
+    padding-left: 0;
+}
+
+/* DISEÑO DEL MAPA (Disminución de tamaño) */
+#ubicacion iframe {
+    
+    width="560" 
+    height="315"
+    width: 100%;
+    max-width: 35rem; /* Tamaño reducido controlado en rem */
+    height: 18rem;    /* Ajuste de altura para balancear con el aside */
+    border-radius: 0.8rem;
+    margin: 0; /* Alineado a la izquierda con el título */
+    display: block;
+}
+
+/* TABLAS - Referencia: W3Schools CSS Tables */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2rem 0;
+    background-color: white;
+}
+
+th, td {
+    border: 0.06rem solid rgb(170, 169, 169);
+    padding: 1rem;
+    text-align: left;
+}
+
+thead th {
+    background-color: var(--color-principal);
+    color: white;
+}
+
+/* FORMULARIOS - Referencia: W3Schools CSS Forms */
+fieldset {
+    width: 100%;
+    border: 0.1rem solid #cccccc;
+    border-radius: 0.8rem;
+    padding: 2rem;
+    background-color: white;
+}
+
+/* Diseño de los Placeholder (texto opaco) */
+::placeholder {
+    color: #999999;
+    font-style: italic;
+    opacity: 0.7;
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 0.8rem;
+    margin-bottom: 1rem;
+    border: 0.1rem solid #ccc;
+    border-radius: 0.4rem;
+}
+
+button[type="submit"] {
+    background-color: var(--color-secundario);
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    cursor: pointer;
+    font-weight: bold;
+    width: 100%;
+    border-radius: 0.4rem;
+}
+
+/* FOOTER / COPYRIGHT */
+footer {
+    border-top: 0.1rem solid #cccccc;
+    margin-top: 4rem;
+    padding: 3rem 1rem;
+    text-align: center;
+    background-color: #f0f0f0;
+}
+
+/* Media Query para móviles */
+@media (max-width: 48rem) {
+    main {
+        grid-template-columns: 1fr;
+    }
+    aside, #contacto {
+        grid-column: 1;
+    }
+}

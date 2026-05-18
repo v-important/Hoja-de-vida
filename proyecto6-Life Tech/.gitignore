@@ -1,0 +1,13 @@
+# Dependencias
+node_modules/
+
+# Imágenes subidas por empleados (cada instalación tendrá las suyas)
+server/uploads/
+
+# Variables de entorno
+.env
+.env.local
+
+# Archivos de sistema
+.DS_Store
+Thumbs.db

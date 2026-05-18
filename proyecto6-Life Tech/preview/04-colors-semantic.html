@@ -1,0 +1,19 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<link href="../colors_and_type.css" rel="stylesheet">
+<style>
+  body{margin:0;padding:20px;background:var(--bg)}
+  .row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+  .chip{border:1px solid var(--border);border-radius:var(--radius-2);padding:10px 12px;display:flex;align-items:center;gap:10px;background:var(--surface)}
+  .dot{width:14px;height:14px;border-radius:999px}
+  .name{font:600 12px/1 var(--font-sans);color:var(--fg)}
+  .hex{font:500 11px/1 var(--font-mono);color:var(--fg-3);margin-left:auto}
+</style></head>
+<body class="lt">
+  <div class="row">
+    <div class="chip"><span class="dot" style="background:#a855f7"></span><span class="name">success</span><span class="hex">#A855F7</span></div>
+    <div class="chip"><span class="dot" style="background:#f59e0b"></span><span class="name">warning</span><span class="hex">#F59E0B</span></div>
+    <div class="chip"><span class="dot" style="background:#ef2b2b"></span><span class="name">danger</span><span class="hex">#EF2B2B</span></div>
+    <div class="chip"><span class="dot" style="background:#22d3ee"></span><span class="name">info</span><span class="hex">#22D3EE</span></div>
+  </div>
+</body></html>

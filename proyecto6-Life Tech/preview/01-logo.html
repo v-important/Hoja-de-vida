@@ -1,0 +1,29 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link href="../colors_and_type.css" rel="stylesheet">
+<style>
+  body{margin:0;padding:24px;background:var(--bg);}
+  .row{display:flex;align-items:center;gap:24px;}
+  .logo-frame{padding:18px 24px;border:1px solid var(--border);border-radius:var(--radius-3);background:var(--surface);}
+  .stamp{display:flex;flex-direction:column;gap:6px}
+  .label{font:600 11px/1 var(--font-sans);letter-spacing:.12em;text-transform:uppercase;color:var(--fg-3)}
+  .word{font:900 56px/1 var(--font-display);letter-spacing:-.05em;color:var(--fg);position:relative}
+  .word .dot{position:absolute;right:-14px;bottom:6px;width:10px;height:10px;border-radius:999px;background:var(--brand-red);box-shadow:0 0 14px 2px rgb(239 43 43 / .55)}
+  .mono{font:900 28px/1 var(--font-display);letter-spacing:-.05em}
+  .light{background:#f5f5f7;color:#050506}
+  .light .word{color:#050506}
+</style></head>
+<body class="lt">
+  <div class="row">
+    <div class="logo-frame">
+      <span class="word">LT<span class="dot"></span></span>
+    </div>
+    <div class="logo-frame light">
+      <span class="word">LT<span class="dot"></span></span>
+    </div>
+    <div class="logo-frame" style="display:flex;gap:14px;align-items:center">
+      <span class="mono">LT<span style="display:inline-block;width:6px;height:6px;border-radius:999px;background:var(--brand-red);margin-left:2px;vertical-align:bottom"></span></span>
+      <span class="label">small / favicon</span>
+    </div>
+  </div>
+</body></html>
