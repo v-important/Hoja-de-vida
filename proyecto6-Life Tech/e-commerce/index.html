@@ -1043,16 +1043,13 @@ body.lt::before {
   .lt-statsbar-item + .lt-statsbar-item::before { display: none; }
 }
 
-@keyframes lt-scale-in { from { opacity: 0; transform: translate(-50%, -50%) scale(0.92); } to { opacity: 1; transform: translate(-50%, -50%) scale(1); } }
   </style>
 </head>
 <body class="lt">
   <div id="app" data-screen-label="Life Tech Storefront"></div>
-
   <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
   <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
   <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
-
   <script>
 // Generado automáticamente por Life Tech Admin Panel · 2026-05-17T23:10:40.109Z
 // No edites este archivo manualmente — usa el panel de empleados.
@@ -3147,20 +3144,29 @@ function ChatBotPanel({ onClose }) {
   const suggestions = ["Valorant", "GTA VI", "Minecraft con shaders", "Setup streaming", "Presupuesto $3M"];
 
   return (
-    <div style={{
-      position: "fixed",
-      top: 0,
-      right: 0,
-      width: 440,
-      height: "100vh",
-      zIndex: 300,
-      background: "#0e0e12",
-      borderLeft: "1px solid rgba(255,255,255,0.08)",
-      display: "flex",
-      flexDirection: "column",
-      boxShadow: "-8px 0 40px rgba(0,0,0,0.5)",
-      animation: "lt-slide-in .28s var(--ease-out)",
-    }}>
+    <>
+      {/* Backdrop fijo — oscurece el fondo sin cerrarse al hacer click */}
+      <div style={{
+        position: "fixed", inset: 0, zIndex: 299,
+        background: "rgba(0,0,0,0.6)", backdropFilter: "blur(3px)",
+        pointerEvents: "none",
+      }}/>
+
+      {/* Panel lateral fijo — siempre visible hasta cerrar */}
+      <div style={{
+        position: "fixed",
+        top: 0,
+        right: 0,
+        width: 440,
+        height: "100vh",
+        zIndex: 300,
+        background: "#0e0e12",
+        borderLeft: "1px solid rgba(255,255,255,0.08)",
+        display: "flex",
+        flexDirection: "column",
+        boxShadow: "-8px 0 40px rgba(0,0,0,0.6)",
+        animation: "lt-slide-in .28s var(--ease-out)",
+      }}>
         {/* Header */}
         <div style={{
           padding: "16px 20px", borderBottom: "1px solid var(--border)",
@@ -3287,7 +3293,8 @@ function ChatBotPanel({ onClose }) {
             🔄 Nueva consulta
           </button>
         </div>
-    </div>
+      </div>
+    </>
   );
 }
 
