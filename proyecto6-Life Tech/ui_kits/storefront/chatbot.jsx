@@ -327,32 +327,22 @@ function ChatBotPanel({ onClose }) {
   const suggestions = ["Valorant", "GTA VI", "Minecraft con shaders", "Setup streaming", "Presupuesto $3M"];
 
   return (
-    <>
-      {/* Backdrop fijo — oscurece el fondo sin cerrarse al hacer click */}
-      <div style={{
-        position: "fixed", inset: 0, zIndex: 299,
-        background: "rgba(0,0,0,0.6)", backdropFilter: "blur(3px)",
-        pointerEvents: "none",
-      }}/>
-
-      {/* Panel lateral fijo — siempre visible hasta cerrar */}
-      <div style={{
-        position: "fixed",
-        top: "50%",
-        right: 0,
-        transform: "translateY(-50%)",
-        width: 440,
-        maxHeight: "90vh",
-        zIndex: 300,
-        background: "#0e0e12",
-        borderLeft: "1px solid rgba(255,255,255,0.08)",
-        borderRadius: "16px 0 0 16px",
-        display: "flex",
-        flexDirection: "column",
-        boxShadow: "-8px 0 40px rgba(0,0,0,0.6)",
-        animation: "lt-slide-in .28s var(--ease-out)",
-        overflow: "hidden",
-      }}>
+    <div style={{
+      position: "fixed",
+      bottom: 24,
+      right: 24,
+      zIndex: 300,
+      width: 360,
+      height: 500,
+      background: "#0e0e12",
+      borderRadius: 16,
+      border: "1px solid rgba(255,255,255,0.1)",
+      boxShadow: "0 8px 48px rgba(0,0,0,0.6), 0 0 0 1px rgba(34,211,238,0.08)",
+      display: "flex",
+      flexDirection: "column",
+      overflow: "hidden",
+      animation: "lt-chat-pop .25s cubic-bezier(0.34,1.56,0.64,1)",
+    }}>
         {/* Header */}
         <div style={{
           padding: "16px 20px", borderBottom: "1px solid var(--border)",
@@ -380,7 +370,7 @@ function ChatBotPanel({ onClose }) {
         </div>
 
         {/* Messages */}
-        <div style={{ overflowY: "auto", maxHeight: 340, minHeight: 80, padding: "20px 20px 8px", display: "flex", flexDirection: "column", gap: 16 }}>
+        <div style={{ flex: 1, minHeight: 0, overflowY: "auto", padding: "16px 16px 8px", display: "flex", flexDirection: "column", gap: 12 }}>
           {messages.map((m, i) => (
             <div key={i} style={{ display: "flex", justifyContent: m.role === "user" ? "flex-end" : "flex-start", alignItems: "flex-start", gap: 8 }}>
               {m.role === "assistant" && (
@@ -479,8 +469,7 @@ function ChatBotPanel({ onClose }) {
             🔄 Nueva consulta
           </button>
         </div>
-      </div>
-    </>
+    </div>
   );
 }
 
