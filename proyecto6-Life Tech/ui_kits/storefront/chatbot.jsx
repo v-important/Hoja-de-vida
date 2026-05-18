@@ -327,21 +327,20 @@ function ChatBotPanel({ onClose }) {
   const suggestions = ["Valorant", "GTA VI", "Minecraft con shaders", "Setup streaming", "Presupuesto $3M"];
 
   return (
-    <div style={{ position: "fixed", inset: 0, zIndex: 300, display: "flex", justifyContent: "flex-end" }}>
-      <div onClick={onClose} style={{
-        position: "absolute", inset: 0,
-        background: "rgb(0 0 0 / 0.55)", backdropFilter: "blur(2px)",
-      }}/>
-      <div style={{
-        position: "relative",
-        width: 440,
-        height: "100vh",
-        background: "#0e0e12",
-        borderLeft: "1px solid var(--border)",
-        display: "flex",
-        flexDirection: "column",
-        animation: "lt-slide-in .28s var(--ease-out)",
-      }}>
+    <div style={{
+      position: "fixed",
+      top: 0,
+      right: 0,
+      width: 440,
+      height: "100vh",
+      zIndex: 300,
+      background: "#0e0e12",
+      borderLeft: "1px solid rgba(255,255,255,0.08)",
+      display: "flex",
+      flexDirection: "column",
+      boxShadow: "-8px 0 40px rgba(0,0,0,0.5)",
+      animation: "lt-slide-in .28s var(--ease-out)",
+    }}>
         {/* Header */}
         <div style={{
           padding: "16px 20px", borderBottom: "1px solid var(--border)",
@@ -468,7 +467,6 @@ function ChatBotPanel({ onClose }) {
             🔄 Nueva consulta
           </button>
         </div>
-      </div>
     </div>
   );
 }
