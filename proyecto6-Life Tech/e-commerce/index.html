@@ -3168,20 +3168,22 @@ function ChatBotPanel({ onClose }) {
 
   const backdropStyle = {
     position: "fixed", top: 0, left: 0, right: 0, bottom: 0,
-    background: "rgba(0,0,0,0.55)", backdropFilter: "blur(3px)",
+    background: "rgba(0,0,0,0.5)", backdropFilter: "blur(4px)",
     zIndex: 8998,
   };
   const windowStyle = {
     position: "fixed",
-    top: "50%", left: "50%",
-    transform: "translate(-50%, -50%)",
-    width: "400px",
-    height: "520px",
+    top: "50%",
+    right: "32px",
+    transform: "translateY(-50%)",
+    width: "380px",
+    height: "500px",
     background: "#0e0e12",
-    borderRadius: "16px",
-    border: "1px solid rgba(255,255,255,0.12)",
-    boxShadow: "0 24px 64px rgba(0,0,0,0.7)",
-    display: "flex", flexDirection: "column",
+    borderRadius: "20px",
+    border: "1px solid rgba(255,255,255,0.1)",
+    boxShadow: "0 32px 80px rgba(0,0,0,0.8), 0 0 0 1px rgba(34,211,238,0.06)",
+    display: "flex",
+    flexDirection: "column",
     overflow: "hidden",
     zIndex: 8999,
   };
@@ -3192,9 +3194,10 @@ function ChatBotPanel({ onClose }) {
       <div style={windowStyle}>
         {/* Header */}
         <div style={{
-          padding: "16px 20px", borderBottom: "1px solid var(--border)",
+          padding: "14px 18px", borderBottom: "1px solid rgba(255,255,255,0.07)",
           display: "flex", alignItems: "center", gap: 12,
-          background: "linear-gradient(135deg, #0e0e12, #15151a)",
+          background: "linear-gradient(135deg, #111116, #17171f)",
+          flexShrink: 0,
         }}>
           <div style={{
             width: 36, height: 36, borderRadius: 10,
@@ -3293,7 +3296,7 @@ function ChatBotPanel({ onClose }) {
         )}
 
         {/* Input */}
-        <div style={{ padding: "12px 20px", borderTop: "1px solid var(--border)", display: "flex", gap: 8 }}>
+        <div style={{ padding: "12px 16px", borderTop: "1px solid rgba(255,255,255,0.07)", display: "flex", gap: 8, flexShrink: 0, background: "#0e0e12" }}>
           <input className="lt-input"
             placeholder="¿Para qué juego necesitas setup?"
             value={input}
@@ -3310,7 +3313,7 @@ function ChatBotPanel({ onClose }) {
         </div>
 
         {/* Footer */}
-        <div style={{ padding: "8px 20px 14px", textAlign: "center" }}>
+        <div style={{ padding: "6px 16px 12px", textAlign: "center", flexShrink: 0 }}>
           <button onClick={() => setMessages([messages[0]])}
             style={{ background: "none", border: "none", color: "var(--fg-3)", font: "400 10px/1 var(--font-sans)", cursor: "pointer" }}>
             🔄 Nueva consulta
