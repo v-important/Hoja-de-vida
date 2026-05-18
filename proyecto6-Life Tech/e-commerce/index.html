@@ -3176,7 +3176,7 @@ function ChatBotPanel({ onClose }) {
     top: "50%", left: "50%",
     transform: "translate(-50%, -50%)",
     width: "400px",
-    maxHeight: "80vh",
+    height: "520px",
     background: "#0e0e12",
     borderRadius: "16px",
     border: "1px solid rgba(255,255,255,0.12)",
@@ -3217,7 +3217,7 @@ function ChatBotPanel({ onClose }) {
         </div>
 
         {/* Messages */}
-        <div style={{ overflowY: "auto", maxHeight: "340px", padding: "16px 16px 8px", display: "flex", flexDirection: "column", gap: 12 }}>
+        <div style={{ flex: 1, minHeight: 0, overflowY: "auto", padding: "16px 16px 8px", display: "flex", flexDirection: "column", gap: 12 }}>
           {messages.map((m, i) => (
             <div key={i} style={{ display: "flex", justifyContent: m.role === "user" ? "flex-end" : "flex-start", alignItems: "flex-start", gap: 8 }}>
               {m.role === "assistant" && (
