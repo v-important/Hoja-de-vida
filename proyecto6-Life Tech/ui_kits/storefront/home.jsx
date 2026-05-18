@@ -523,7 +523,7 @@ function HomeAIBand() {
               marcas reales y precios en USD. Listo en segundos.
             </p>
             <div style={{ display: "flex", gap: 12, marginTop: 8 }}>
-              <Button variant="primary" onClick={() => { window.scrollTo({ top: 0, behavior: "smooth" }); setChatOpen(true); }}>Probar gratis</Button>
+              <Button variant="primary" onClick={() => setChatOpen(true)}>Probar gratis</Button>
               <Button variant="ghost" onClick={() => setHowOpen(true)}>Cómo funciona</Button>
             </div>
           </div>

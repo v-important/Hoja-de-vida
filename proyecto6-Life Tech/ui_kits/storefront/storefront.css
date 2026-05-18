@@ -217,6 +217,7 @@ body { background: var(--bg); color: var(--fg); font-family: var(--font-sans); }
   box-shadow: var(--shadow-elevated);
 }
 @keyframes lt-slide-in { from { transform: translateX(100%) } to { transform: translateX(0) } }
+@keyframes lt-scale-in { from { opacity: 0; transform: translate(-50%, -50%) scale(0.92); } to { opacity: 1; transform: translate(-50%, -50%) scale(1); } }
 
 /* ---- Hero ---- */
 .lt-hero {

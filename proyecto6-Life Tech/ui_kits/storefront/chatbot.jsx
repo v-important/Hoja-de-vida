@@ -337,9 +337,9 @@ function ChatBotPanel({ onClose }) {
       {/* Ventana flotante contenida */}
       <div style={{
         position: "fixed",
-        right: 24,
         top: "50%",
-        transform: "translateY(-50%)",
+        left: "50%",
+        transform: "translate(-50%, -50%)",
         zIndex: 300,
         width: 440,
         height: "min(620px, calc(100vh - 48px))",
@@ -350,7 +350,7 @@ function ChatBotPanel({ onClose }) {
         display: "flex",
         flexDirection: "column",
         overflow: "hidden",
-        animation: "lt-slide-in .28s var(--ease-out)",
+        animation: "lt-scale-in .25s var(--ease-out)",
       }}>
         {/* Header */}
         <div style={{
