@@ -326,7 +326,7 @@ function ChatBotPanel({ onClose }) {
 
   const suggestions = ["Valorant", "GTA VI", "Minecraft con shaders", "Setup streaming", "Presupuesto $3M"];
 
-  return (
+  return ReactDOM.createPortal(
     <div className="lt-chat-widget">
         {/* Header */}
         <div style={{
@@ -454,7 +454,8 @@ function ChatBotPanel({ onClose }) {
             🔄 Nueva consulta
           </button>
         </div>
-    </div>
+    </div>,
+    document.body
   );
 }
 
