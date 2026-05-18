@@ -337,7 +337,7 @@ function ChatBotPanel({ onClose }) {
     right: "32px",
     transform: "translateY(-50%)",
     width: "380px",
-    height: "500px",
+    height: "calc(100vh - 48px)",
     background: "#0e0e12",
     borderRadius: "20px",
     border: "1px solid rgba(255,255,255,0.1)",
