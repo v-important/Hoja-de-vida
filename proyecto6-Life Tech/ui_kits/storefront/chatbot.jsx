@@ -327,30 +327,20 @@ function ChatBotPanel({ onClose }) {
   const suggestions = ["Valorant", "GTA VI", "Minecraft con shaders", "Setup streaming", "Presupuesto $3M"];
 
   return (
-    <>
-      {/* Backdrop */}
+    <div style={{ position: "fixed", inset: 0, zIndex: 300, display: "flex", justifyContent: "flex-end" }}>
       <div onClick={onClose} style={{
-        position: "fixed", inset: 0, zIndex: 299,
-        background: "rgb(0 0 0 / 0.5)", backdropFilter: "blur(2px)",
+        position: "absolute", inset: 0,
+        background: "rgb(0 0 0 / 0.55)", backdropFilter: "blur(2px)",
       }}/>
-
-      {/* Ventana flotante contenida */}
       <div style={{
-        position: "fixed",
-        top: "50%",
-        left: "50%",
-        transform: "translate(-50%, -50%)",
-        zIndex: 300,
+        position: "relative",
         width: 440,
-        height: "min(620px, calc(100vh - 48px))",
+        height: "100vh",
         background: "#0e0e12",
-        border: "1px solid var(--border)",
-        borderRadius: 16,
-        boxShadow: "0 32px 80px rgba(0,0,0,0.75), 0 0 0 1px rgba(34,211,238,0.07)",
+        borderLeft: "1px solid var(--border)",
         display: "flex",
         flexDirection: "column",
-        overflow: "hidden",
-        animation: "lt-scale-in .25s var(--ease-out)",
+        animation: "lt-slide-in .28s var(--ease-out)",
       }}>
         {/* Header */}
         <div style={{
@@ -479,7 +469,7 @@ function ChatBotPanel({ onClose }) {
           </button>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 
